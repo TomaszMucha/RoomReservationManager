@@ -23,7 +23,6 @@ namespace SRPH
         public MainWindow()
         {
             InitializeComponent();
-            //test merge
         }
     }
 }
