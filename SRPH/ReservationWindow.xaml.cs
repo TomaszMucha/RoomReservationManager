@@ -19,9 +19,18 @@ namespace SRPH
     /// </summary>
     public partial class ReservationWindow : Window
     {
+        public ReservationWindow(int ResNumber)
+        {
+            InitializeComponent();
+            //wywowałąc metoda ładującą dane z bazy danych
+
+        }
+
         public ReservationWindow()
         {
             InitializeComponent();
+
         }
     }
+
 }

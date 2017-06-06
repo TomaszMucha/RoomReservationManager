@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="btn_Search" Content="Szukaj" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btn_Reservation" Content="Rezerwacja" HorizontalAlignment="Left" Margin="107,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btn_Add" Content="Dodaj" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btn_Reservation" Content="Wyświetl rezerwacje" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="118"/>
+        <Button x:Name="btn_AddRoom" Content="Dodaj Pokój" HorizontalAlignment="Left" Margin="114,10,0,0" VerticalAlignment="Top" Width="75" Click="btn_AddRoom_Click"/>
         <Calendar HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
-        <DockPanel Height="42" LastChildFill="False" Margin="10,0" VerticalAlignment="Top"/>
-        <Button x:Name="btn_Close" Content="Zamknij" HorizontalAlignment="Left" Margin="304,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btn_Close" Content="Zamknij" HorizontalAlignment="Left" Margin="421,10,0,0" VerticalAlignment="Top" Width="75" Click="btn_Close_Click"/>
+        <Button x:Name="btn_Rooms" Content="Wyswietl Pokoje" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="118"/>
+        <Button x:Name="btn_Search" Content="Szukaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="31,10,0,0"/>
+        <Button x:Name="btn_Edit" Content="Edytuj" HorizontalAlignment="Left" Margin="341,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btn_AddReservation" Content="Wykonaj Rezerwacje" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" Width="118" Click="btn_AddReservation_Click"/>
 
     </Grid>
 </Window>
