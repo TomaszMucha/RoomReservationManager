@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Button x:Name="btn_Search" Content="Szukaj" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btn_Reservation" Content="Rezerwacja" HorizontalAlignment="Left" Margin="107,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btn_Add" Content="Dodaj" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Calendar HorizontalAlignment="Left" Margin="10,157,0,0" VerticalAlignment="Top"/>
+        <DockPanel Height="42" LastChildFill="False" Margin="10,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_Close" Content="Zamknij" HorizontalAlignment="Left" Margin="304,10,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>
