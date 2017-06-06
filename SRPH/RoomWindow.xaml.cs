@@ -23,5 +23,11 @@ namespace SRPH
         {
             InitializeComponent();
         }
+        public RoomWindow(int RoomNumber)
+        {
+            InitializeComponent();
+            //wywowałac metoda ładującą dane z bazy danych
+
+        }
     }
 }
