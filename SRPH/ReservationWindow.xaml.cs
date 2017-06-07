@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SRPH.Helper;
 
 namespace SRPH
 {
@@ -39,7 +40,7 @@ namespace SRPH
             if (Date == null)
             {
                 compatibilityForm = false;
-                //brak daty
+                MessageBox.Show("Podaj datę od");
             }
             else
             {
@@ -54,7 +55,7 @@ namespace SRPH
             if (Date == null)
             {
                 compatibilityForm = false;
-                //brak daty
+                MessageBox.Show("Podaj datę do");
             }
             else
             {
@@ -68,6 +69,8 @@ namespace SRPH
             if (Name == string.Empty)
             {
                 compatibilityForm = false;
+                MessageBox.Show("Popraw Imię");
+
             }
 
             return Name;
@@ -78,6 +81,8 @@ namespace SRPH
             if (SurName == string.Empty)
             {
                 compatibilityForm = false;
+                MessageBox.Show("Popraw Nazwisko");
+
             }
 
             return SurName;
@@ -85,9 +90,11 @@ namespace SRPH
         string GetPesel()
         {
             string Pesel = TB_Pesel.Text;
-            if (Pesel == string.Empty)
+            bool ret=Validate.ValidatePesel(ref Pesel);
+            if (Pesel == string.Empty||ret==false)
             {
                 compatibilityForm = false;
+                MessageBox.Show("Popraw numer PESEL");
             }
 
             return Pesel;
@@ -99,6 +106,8 @@ namespace SRPH
             if (PhoneNumber == 0 || result == false)
             {
                 compatibilityForm = false;
+                MessageBox.Show("Popraw numer telefonu");
+
             }
 
             return PhoneNumber;
@@ -113,6 +122,8 @@ namespace SRPH
             if (DataOd > DataDo)
             {
                 compatibilityForm = false;
+                MessageBox.Show("Popraw zakres dat");
+
             }
             string Imie = GetName();
             string Nazwisko = GetSurName();
