@@ -8,5 +8,9 @@ namespace SRPH_DataBase
 {
     class Rooms
     {
+        public int RoomId { get; set; }
+        public int RoomNumber { get; set; }
+        public int NumberOfPersons { get; set; }
+        public string NumberOfBeds { get; set; }
     }
 }
