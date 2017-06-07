@@ -8,5 +8,10 @@ namespace SRPH_DataBase
 {
     class Client
     {
+        public int IdClient { get; set; }
+        public string Name { get; set; }
+        public string Surename { get; set; }
+        public long PESEL { get; set; }
+        public long PhoneNumber { get; set; }
     }
 }
