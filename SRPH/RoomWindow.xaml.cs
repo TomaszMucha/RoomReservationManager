@@ -30,20 +30,24 @@ namespace SRPH
             //wywowałac metoda ładującą dane z bazy danych
 
         }
-        string GetRoomNumber()
+        int GetRoomNumber()
         {
-            string RoomNumber = TB_Number.Text;
-            if (RoomNumber == string.Empty)
+            int RoomNumber ;
+            bool result = Int32.TryParse(TB_Number.Text, out RoomNumber);
+
+            if (RoomNumber == 0 || result == false)
             {
                 compatibilityForm = false;
             }
 
             return RoomNumber;
         }
-        string GetPersonNumber()
+        int GetPersonNumber()
         {
-            string PersonNumber = TB_NumberOfPerson.Text;
-            if (PersonNumber == string.Empty)
+            int PersonNumber;
+            bool result = Int32.TryParse(TB_NumberOfPerson.Text, out PersonNumber);
+
+            if (PersonNumber == 0 || result == false)
             {
                 compatibilityForm = false;
             }
@@ -60,14 +64,14 @@ namespace SRPH
 
             return TypeBeds;
         }
-        private void btn_Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             //TODO sprawdzenie poprawnosci i zapis do bazy
+            compatibilityForm = true;
+            int NumerPokoju = GetRoomNumber();
+            int IlośćOsób = GetPersonNumber();
+            string TypŁóżek = GetTypeBeds();
             if (compatibilityForm == true)
             {
                 //TODO zapis do bazy
@@ -77,6 +81,10 @@ namespace SRPH
             {
                 MessageBox.Show("Popraw bo z dupy masz te dane!");
             }
+        }
+        private void btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
