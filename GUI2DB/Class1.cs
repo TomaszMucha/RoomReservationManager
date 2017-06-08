@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
-using SRPH_DataBase;
 using System.IO;
+using SRPH_DataBase;
 
 namespace GUI2DB
 {
@@ -16,9 +13,12 @@ namespace GUI2DB
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
-        public List<Client> ClientList { get; set; }
-        public void test()
+
+        public IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+        void test()
         {
+            string path = Directory.GetCurrentDirectory();
+            IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
@@ -28,7 +28,6 @@ namespace GUI2DB
             db = Db4oEmbedded.OpenFile(config, path);
         }
 
-
     }
 
     public class Class1
@@ -36,12 +35,24 @@ namespace GUI2DB
 
         public static void CreateReservation(object sender)
         {
-            
+
             if (true)
             {
+                string path = Directory.GetCurrentDirectory();
+                IObjectContainer db;
+                IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+                config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+                config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+                config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+                db = Db4oEmbedded.OpenFile(config, path);
                 //tets podłaczenia do bazy danych
                 //Rooms test = new Rooms();
                 //test.
+
+
+
                 var reservations = new List<Reservation>();
                 var reservation = new Reservation();
                 IObjectSet result = db.QueryByExample(typeof(Reservation));
@@ -57,16 +68,12 @@ namespace GUI2DB
                         IdClient = reservation.IdClient,
                         ReservationDataFrom = reservation.ReservationDataFrom,
                         ReservationDataTo = reservation.ReservationDataTo,
-                        RoomStandard = reservation.RoomStandard.ToList();
-                    )
-                    };
-                           
-                   
+                        RoomStandard = reservation.RoomStandard.ToList() });
                 }
-
             }
-
-
         }
     }
 }
+
+
+       
