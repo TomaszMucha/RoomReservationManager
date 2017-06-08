@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SRPH_DataBase
 {
-    class Reservation
+    public class Reservation
     {
         public int IdRoom { get; set; }
         public int IdClient { get; set; }
