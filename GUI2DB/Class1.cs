@@ -18,8 +18,8 @@ namespace GUI2DB
                 //tets podłaczenia do bazy danych
                 //Rooms test = new Rooms();
                 //test.
-                Rooms = new List<Room>();
-                room = new Room();
+                var rooms = new List<Rooms>();
+                var room = new Rooms();
                 IObjectSet result = db.QueryByExample(typeof(Room));
 
                 foreach (var x in result)
