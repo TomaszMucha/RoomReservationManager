@@ -17,7 +17,7 @@ namespace GUI2DB
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
         public List<Client> ClientList { get; set; }
-        void test()
+        public void test()
         {
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
