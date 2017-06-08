@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
-
+using SRPH_DataBase;
 
 namespace GUI2DB
 {
@@ -13,8 +13,11 @@ namespace GUI2DB
     {
         public static void CreateReservation(int roomnum)
         { 
-            if ()
+            if (true)
             {
+                //tets podłaczenia do bazy danych
+                //Rooms test = new Rooms();
+                //test.
                 Rooms = new List<Room>();
                 room = new Room();
                 IObjectSet result = db.QueryByExample(typeof(Room));
