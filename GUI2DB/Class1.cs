@@ -6,11 +6,31 @@ using System.Threading.Tasks;
 using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
 using SRPH_DataBase;
+using System.IO;
 
 namespace GUI2DB
 {
+    public class Base
+    {
+        static string path = Directory.GetCurrentDirectory();
+        IObjectContainer db;
+        public List<Rooms> RoomsList { get; set; }
+        public List<Reservation> ReservationList { get; set; }
+        public List<Client> ClientList { get; set; }
+
+  
+        IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+        
+        config.Common.ObjectClass(typeof(Contact)).CascadeOnUpdate(true);
+        config.Common.ObjectClass(typeof(Contact)).CascadeOnDelete(true);
+        config.Common.ObjectClass(typeof(Contact)).CascadeOnActivate(true);
+
+        db = Db4oEmbedded.OpenFile(config, path);
+
+    }
     public class Class1
     {
+        
         public static void CreateReservation(object sender)
         {
             if (true)
