@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRPH", "SRPH\SRPH.csproj", "{F142CEF9-8587-4003-B82D-645220E2ADE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRPH-DataBase", "SRPH-DataBase\SRPH-DataBase.csproj", "{DDBAD3F1-CD89-472D-A99E-836F7002863C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI2DB", "GUI2DB\GUI2DB.csproj", "{1C616109-7977-47BC-8CB5-167DBF5F7706}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DDBAD3F1-CD89-472D-A99E-836F7002863C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDBAD3F1-CD89-472D-A99E-836F7002863C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDBAD3F1-CD89-472D-A99E-836F7002863C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C616109-7977-47BC-8CB5-167DBF5F7706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C616109-7977-47BC-8CB5-167DBF5F7706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C616109-7977-47BC-8CB5-167DBF5F7706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C616109-7977-47BC-8CB5-167DBF5F7706}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

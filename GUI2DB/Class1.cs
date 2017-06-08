@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Db4objects.Db4o;
+using Db4objects.Db4o.Config;
+
 
 namespace GUI2DB
 {
     public class Class1
     {
-        public static void WriteToDataBase(int roomnum)
-        { /*
-            if (addEditContactWindow.DialogResult == true)
+        public static void CreateReservation(int roomnum)
+        { 
+            if ()
             {
                 Rooms = new List<Room>();
                 room = new Room();
@@ -23,19 +26,21 @@ namespace GUI2DB
                     {
                         reservation = new Reservation
                         {
-                            Name = reservation.name == null ? "" : reservation.name,
-                            Surname = reservation.surname == null ? "" : reservation.surname,
-                            PESEL = reservation.pesel == null ? "" : reservation.pesel,
-                            Phone = reservation.phone == null ? "" : reservation.phone
+                            IDRoom = reservation.IdRoom == null ? "" : reservation.IdRoom,
+                            IDClient = reservation.IdClient == null ? "" : reservation.IdClient,
+                            ReservationDataFrom = reservation.ReservationDataFrom == null ? "" : reservation.ReservationDataFrom,
+                            ReservationDataTo = reservation.ReservationDataTo == null ? "" : reservation.ReservationDataTo,
+                            RoomStandard = reservation.RoomStandard == null ? "" : reservation.RoomStandard
                         },
-                        Name = reservation.name,
-                        Surname = reservation.surname,
-                        PESEL = reservation.pesel,
-                        Phone = reservation.phone
+                            IDRoom = reservation.IdRoom,
+                            IDClient = reservation.IdClient,
+                            ReservationDataFrom = reservation.ReservationDataFrom,,
+                            ReservationDataTo = reservation.ReservationDataTo,
+                            RoomStandard = reservation.RoomStandard
                     });
                 }
-*/
-            }
+
+        }
 
           
         }
