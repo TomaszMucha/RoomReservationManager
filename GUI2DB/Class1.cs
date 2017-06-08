@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
-using System.IO;
 using SRPH_DataBase;
+using System.IO;
 
 namespace GUI2DB
 {
@@ -13,21 +16,27 @@ namespace GUI2DB
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
-        public IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
-        
+        public List<Client> ClientList { get; set; }
+        void test()
+        {
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
-            config.Common.ObjectClass(typeof(Contact)).CascadeOnUpdate(true);
-            config.Common.ObjectClass(typeof(Contact)).CascadeOnDelete(true);
-            config.Common.ObjectClass(typeof(Contact)).CascadeOnActivate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
             db = Db4oEmbedded.OpenFile(config, path);
+        }
+
 
     }
+
     public class Class1
     {
-        
+
         public static void CreateReservation(object sender)
         {
+            
             if (true)
             {
                 //tets podłaczenia do bazy danych
