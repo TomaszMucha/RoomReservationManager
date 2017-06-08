@@ -19,6 +19,8 @@ namespace GUI2DB
         public List<Client> ClientList { get; set; }
         void test()
         {
+            string path = Directory.GetCurrentDirectory();
+            IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
@@ -36,12 +38,24 @@ namespace GUI2DB
 
         public static void CreateReservation(object sender)
         {
-            
+
             if (true)
             {
+                string path = Directory.GetCurrentDirectory();
+                IObjectContainer db;
+                IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+                config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+                config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+                config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+                db = Db4oEmbedded.OpenFile(config, path);
                 //tets podłaczenia do bazy danych
                 //Rooms test = new Rooms();
                 //test.
+
+
+
                 var reservations = new List<Reservation>();
                 var reservation = new Reservation();
                 IObjectSet result = db.QueryByExample(typeof(Reservation));
@@ -57,16 +71,12 @@ namespace GUI2DB
                         IdClient = reservation.IdClient,
                         ReservationDataFrom = reservation.ReservationDataFrom,
                         ReservationDataTo = reservation.ReservationDataTo,
-                        RoomStandard = reservation.RoomStandard.ToList();
-                    )
-                    };
-                           
-                   
+                        RoomStandard = reservation.RoomStandard.ToList() });
                 }
-
             }
-
-
         }
     }
 }
+
+
+       
