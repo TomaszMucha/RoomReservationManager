@@ -115,6 +115,10 @@
       <Project>{1c616109-7977-47bc-8cb5-167dbf5f7706}</Project>
       <Name>GUI2DB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SRPH-DataBase\SRPH-DataBase.csproj">
+      <Project>{ddbad3f1-cd89-472d-a99e-836f7002863c}</Project>
+      <Name>SRPH-DataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

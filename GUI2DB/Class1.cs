@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
-using SRPH_DataBase;
 using System.IO;
+using SRPH_DataBase;
 
 namespace GUI2DB
 {
@@ -16,16 +13,14 @@ namespace GUI2DB
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
-        public List<Client> ClientList { get; set; }
-
-  
-        IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+        public IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
         
-        config.Common.ObjectClass(typeof(Contact)).CascadeOnUpdate(true);
-        config.Common.ObjectClass(typeof(Contact)).CascadeOnDelete(true);
-        config.Common.ObjectClass(typeof(Contact)).CascadeOnActivate(true);
 
-        db = Db4oEmbedded.OpenFile(config, path);
+            config.Common.ObjectClass(typeof(Contact)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Contact)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Contact)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
 
     }
     public class Class1
