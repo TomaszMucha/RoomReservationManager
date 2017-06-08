@@ -11,40 +11,38 @@ namespace GUI2DB
 {
     public class Class1
     {
-        public static void CreateReservation(int roomnum)
-        { 
+        public static void CreateReservation(object sender)
+        {
             if (true)
             {
                 //tets podłaczenia do bazy danych
                 //Rooms test = new Rooms();
                 //test.
-                var rooms = new List<Rooms>();
-                var room = new Rooms();
-                IObjectSet result = db.QueryByExample(typeof(Room));
+                var reservations = new List<Reservation>();
+                var reservation = new Reservation();
+                IObjectSet result = db.QueryByExample(typeof(Reservation));
 
                 foreach (var x in result)
                 {
-                    room = (Room)x;
-                    Rooms.Add(new Room
+                    reservation = (Reservation)x;
+                    reservations.Add(new Reservation
+
+
                     {
-                        reservation = new Reservation
-                        {
-                            IDRoom = reservation.IdRoom == null ? "" : reservation.IdRoom,
-                            IDClient = reservation.IdClient == null ? "" : reservation.IdClient,
-                            ReservationDataFrom = reservation.ReservationDataFrom == null ? "" : reservation.ReservationDataFrom,
-                            ReservationDataTo = reservation.ReservationDataTo == null ? "" : reservation.ReservationDataTo,
-                            RoomStandard = reservation.RoomStandard == null ? "" : reservation.RoomStandard
-                        },
-                            IDRoom = reservation.IdRoom,
-                            IDClient = reservation.IdClient,
-                            ReservationDataFrom = reservation.ReservationDataFrom,,
-                            ReservationDataTo = reservation.ReservationDataTo,
-                            RoomStandard = reservation.RoomStandard
-                    });
+                        IdRoom = reservation.IdRoom,
+                        IdClient = reservation.IdClient,
+                        ReservationDataFrom = reservation.ReservationDataFrom,
+                        ReservationDataTo = reservation.ReservationDataTo,
+                        RoomStandard = reservation.RoomStandard.ToList();
+                    )
+                    };
+                           
+                   
                 }
 
-        }
+            }
 
-          
+
         }
+    }
 }
