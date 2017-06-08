@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
-using SRPH_DataBase;
 using System.IO;
+using SRPH_DataBase;
 
 namespace GUI2DB
 {
@@ -16,7 +13,8 @@ namespace GUI2DB
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
-        public List<Client> ClientList { get; set; }
+
+        public IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
         void test()
         {
             string path = Directory.GetCurrentDirectory();
@@ -29,7 +27,6 @@ namespace GUI2DB
 
             db = Db4oEmbedded.OpenFile(config, path);
         }
-
 
     }
 
