@@ -17,22 +17,26 @@ namespace GUI2DB
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
         public List<Client> ClientList { get; set; }
+        void test()
+        {
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
-  
-        IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
-        
-        config.Common.ObjectClass(typeof(Contact)).CascadeOnUpdate(true);
-        config.Common.ObjectClass(typeof(Contact)).CascadeOnDelete(true);
-        config.Common.ObjectClass(typeof(Contact)).CascadeOnActivate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
-        db = Db4oEmbedded.OpenFile(config, path);
+            db = Db4oEmbedded.OpenFile(config, path);
+        }
+
 
     }
+
     public class Class1
     {
-        
+
         public static void CreateReservation(object sender)
         {
+            
             if (true)
             {
                 //tets podłaczenia do bazy danych

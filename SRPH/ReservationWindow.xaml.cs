@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SRPH.Helper;
-using GUI2DB;
 
 namespace SRPH
 {
@@ -25,10 +24,7 @@ namespace SRPH
         public ReservationWindow(int ResNumber)
         {
             InitializeComponent();
-            int i = 1;
-            GUI2DB.Class1.CreateReservation(i);
             //wywowałąc metoda ładującą dane z bazy danych
-
         }
 
         public ReservationWindow()
