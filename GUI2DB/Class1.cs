@@ -13,8 +13,7 @@ namespace GUI2DB
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
-
-        public IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+        public List<Client> ClientList { get; set; }
         void test()
         {
             string path = Directory.GetCurrentDirectory();
