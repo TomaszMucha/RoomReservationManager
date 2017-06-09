@@ -72,9 +72,18 @@ namespace GUI2DB
                 }
             }
         }
-        public static void GetRooms()
+        public static void AddRooms()
             //musi po czymś szukać i zwrócić obj room list
         {
+            string path = Directory.GetCurrentDirectory();
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
             var rooms = new List<Rooms>();
             var room = new Reservation();
             IObjectSet result = db.QueryByExample(typeof(Reservation));
