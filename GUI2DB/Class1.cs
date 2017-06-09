@@ -71,6 +71,46 @@ namespace GUI2DB
                 }
             }
         }
+        public static void AddRooms()
+            
+        {
+            string path = Directory.GetCurrentDirectory();
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
+            var rooms = new List<Rooms>();
+            var room = new Reservation();
+            IObjectSet result = db.QueryByExample(typeof(Reservation));
+
+            foreach (var x in result)
+            {
+                room = (Rooms)x;
+                rooms.Add(new Rooms
+
+
+                {
+                    RoomId = room.RoomId,
+                    RoomNumber = room.RoomNumber,
+                    NumberOfPersons = room.NumberOfPersons,
+                    NumberOfBeds = room.NumberOfBeds
+                   
+                });
+            }
+
+        }
+        public static Reservation GetReservation(long PESEL)
+        {
+            var results = db.Query<Reservation>(x => x.PESEL == PESEL);
+            Reservation Reserv = result.First();
+            return Reserv;
+
+        }
+        
     }
 }
 
