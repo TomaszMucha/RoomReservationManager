@@ -72,6 +72,29 @@ namespace GUI2DB
                 }
             }
         }
+        public static void GetRooms()
+            //musi po czymś szukać i zwrócić obj room list
+        {
+            var rooms = new List<Rooms>();
+            var room = new Reservation();
+            IObjectSet result = db.QueryByExample(typeof(Reservation));
+
+            foreach (var x in result)
+            {
+                room = (Rooms)x;
+                rooms.Add(new Rooms
+
+
+                {
+                    RoomId = room.RoomId,
+                    RoomNumber = room.RoomNumber,
+                    NumberOfPersons = room.NumberOfPersons,
+                    NumberOfBeds = room.NumberOfBeds
+                   
+                });
+            }
+
+        }
     }
 }
 
