@@ -73,7 +73,7 @@ namespace GUI2DB
             }
         }
         public static void AddRooms()
-            //musi po czymś szukać i zwrócić obj room list
+            
         {
             string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
@@ -104,6 +104,14 @@ namespace GUI2DB
             }
 
         }
+        public static Reservation GetReservation(long PESEL)
+        {
+            var results = db.Query<Reservation>(x => x.PESEL == PESEL);
+            Reservation Reserv = result.First();
+            return Reserv;
+
+        }
+        
     }
 }
 
