@@ -128,8 +128,8 @@ namespace SRPH
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             compatibilityForm = true;
-            int IdRoom = 1;
-            int IdClient = 1;
+            int IdRoom = 2;
+            int IdClient = 2;
             List<string> RoomStandard = new List<string>();
             DateTime DataOd = DatePickerFrom();
             DateTime DataDo = DatePickerTo();

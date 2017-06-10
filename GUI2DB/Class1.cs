@@ -60,6 +60,7 @@ namespace GUI2DB
                 reservation.ReservationDataTo = ReservationDataTo;
                 reservation.RoomStandard = RoomStandard;
                 reservation.Surename = Surename;
+                reservation.Name = Name;
 
                 db.Store(reservation);
                 db.Commit();
