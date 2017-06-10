@@ -10,14 +10,14 @@ namespace GUI2DB
 {
     public class Base
     {
-        static string path = Directory.GetCurrentDirectory()+"\\database.srph";
+        static string path = Directory.GetCurrentDirectory();
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
         
         void test()
         {
-            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
@@ -38,7 +38,7 @@ namespace GUI2DB
 
             if (true)
             {
-                string path = Directory.GetCurrentDirectory() + "\\database.srph";
+                string path = Directory.GetCurrentDirectory();
                 IObjectContainer db;
                 IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
@@ -60,16 +60,19 @@ namespace GUI2DB
                 reservation.ReservationDataTo = ReservationDataTo;
                 reservation.RoomStandard = RoomStandard;
                 reservation.Surename = Surename;
-                //reservation.Name = Name;
 
                 db.Store(reservation);
-                
+                db.Commit();
+                db.Close();
+
+
+
             }
         }
         public static void AddRooms(int roomID, int RoomNum, int Persons, string Beds)
             
         {
-            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
@@ -81,17 +84,19 @@ namespace GUI2DB
             
             var room = new Rooms();
             room.RoomId = roomID;
-            room.Booked = false;
+            room.Booked = true;
             room.NumberOfBeds = Beds;
             room.NumberOfPersons = Persons;
             room.RoomNumber = RoomNum;
 
             db.Store(room);
+            db.Commit();
+            db.Close();
 
         }
         public static Reservation GetReservation(int ResNumber)
         {
-            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
@@ -114,7 +119,7 @@ namespace GUI2DB
         }
         public static void DeleteRoom(int roomID)
         {
-            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
@@ -124,12 +129,15 @@ namespace GUI2DB
 
             db = Db4oEmbedded.OpenFile(config, path);
             var result= db.Query<Rooms>(x => x.RoomId == roomID);
+            
             db.Delete(result);
+            db.Commit();
+            db.Close();
 
         }
         public static void DeleteReservation (int ResID)
         {
-            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
@@ -140,6 +148,8 @@ namespace GUI2DB
             db = Db4oEmbedded.OpenFile(config, path);
             var result = db.Query<Reservation>(x => x.ReservationID == ResID);
             db.Delete(result);
+            db.Commit();
+            db.Close();
         }
         public static IList<Rooms> GetRoom(int ID)
         {
