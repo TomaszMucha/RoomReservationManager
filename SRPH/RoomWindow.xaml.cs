@@ -25,9 +25,10 @@ namespace SRPH
         {
             InitializeComponent();
         }
-        public RoomWindow(int RoomNumber)
+        public RoomWindow(int Roomid)
         {
             InitializeComponent();
+            Class1.GetRoom(Roomid)
             //wywowałac metoda ładującą dane z bazy danych
 
         }

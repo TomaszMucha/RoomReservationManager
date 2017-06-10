@@ -33,7 +33,7 @@ namespace GUI2DB
     public class Class1
     {
 
-        public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, long PESEL, long PhoneNumber)
+        public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
 
             if (true)

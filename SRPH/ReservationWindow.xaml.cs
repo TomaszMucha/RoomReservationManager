@@ -25,7 +25,7 @@ namespace SRPH
         public ReservationWindow(int Number)
         {
             InitializeComponent();
-            Class1.GetReservation(Number);
+            var Reservation=Class1.GetReservation(Number);
             //wywowałąc metoda ładującą dane z bazy danych
         }
 
@@ -117,7 +117,9 @@ namespace SRPH
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             compatibilityForm = true;
-
+            int IdRoom=1;
+            int IdClient=1;
+            List<> Roomstandard;
             DateTime DataOd = DatePickerFrom();
             DateTime DataDo = DatePickerTo();
             if (DataOd > DataDo)
@@ -133,6 +135,7 @@ namespace SRPH
             if (compatibilityForm == true)
             {
                 //TODO zapis do bazy
+                Class1.CreateReservation(IdRoom, IdClient, DataOd, DataDo, Roomstandard, Imie, Nazwisko, Pesel, Telefon);
                 MessageBox.Show("Zapisano!");
             }
             else
