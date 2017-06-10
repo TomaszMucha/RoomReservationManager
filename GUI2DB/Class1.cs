@@ -115,7 +115,7 @@ namespace GUI2DB
             }
 
         }
-        public static Reservation GetReservation(long PESEL)
+        public static Reservation GetReservation(int ResNumber)
         {
             string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
@@ -126,7 +126,7 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
             db = Db4oEmbedded.OpenFile(config, path);
-            var results = db.Query<Reservation>(x => x.PESEL == PESEL);
+            var results = db.Query<Reservation>(x => x.ReservationID == ResNumber);
             Reservation Reserv = results.First();
             return Reserv;
 
@@ -169,6 +169,7 @@ namespace GUI2DB
             var result = db.Query<Reservation>(x => x.ReservationID == ResID);
             db.Delete(result);
         }
+        //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
         
     }
 }
