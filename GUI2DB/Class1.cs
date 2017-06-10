@@ -120,10 +120,12 @@ namespace GUI2DB
 
         }
 
-        public static void GetFreeRooms()
+        public static IList<Rooms> GetFreeRooms()
         {
             IObjectContainer db = Db4oFactory.OpenFile("C:\baza");          
             var FreeRooms = db.Query<Rooms>(x=>x.Booked==false);
+            return FreeRooms;
+
         }
 
         public static void DeleteRoom(int roomID)
@@ -140,6 +142,20 @@ namespace GUI2DB
             var result= db.Query<Rooms>(x => x.RoomId == roomID);
             db.Delete(result);
 
+        }
+        public static void DeleteReservation (int ReserID)
+        {
+            string path = Directory.GetCurrentDirectory();
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
+            var result = db.Query<Reservation>(x => x.IdClient == ReserID);
+            db.Delete(result);
         }
         
     }
