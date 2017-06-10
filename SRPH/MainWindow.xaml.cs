@@ -1,3 +1,4 @@
+using GUI2DB;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,6 +42,12 @@ namespace SRPH
         private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_Reservation_Click(object sender, RoutedEventArgs e)
+        {
+            ReservationWindow AddReservation = new ReservationWindow(1);
+            AddReservation.ShowDialog();
         }
     }
 }
