@@ -62,8 +62,6 @@ namespace GUI2DB
                 reservation.Surename = Surename;
 
                 db.Store(reservation);
-
-
                 
             }
         }
@@ -82,7 +80,7 @@ namespace GUI2DB
             
             var room = new Rooms();
             room.RoomId = roomID;
-            room.Booked = true;
+            room.Booked = false;
             room.NumberOfBeds = Beds;
             room.NumberOfPersons = Persons;
             room.RoomNumber = RoomNum;
