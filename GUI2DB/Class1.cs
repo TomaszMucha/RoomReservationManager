@@ -64,23 +64,7 @@ namespace GUI2DB
                 db.Store(reservation);
 
 
-                var reservations = new List<Reservation>();
-                //var reservation = new Reservation();
-                IObjectSet result = db.QueryByExample(typeof(Reservation));
-
-                foreach (var x in result)
-                {
-                    reservation = (Reservation)x;
-                    reservations.Add(new Reservation
-
-
-                    {
-                        IdRoom = reservation.IdRoom,
-                        IdClient = reservation.IdClient,
-                        ReservationDataFrom = reservation.ReservationDataFrom,
-                        ReservationDataTo = reservation.ReservationDataTo,
-                        RoomStandard = reservation.RoomStandard.ToList() });
-                }
+                
             }
         }
         public static void AddRooms(int roomID, int RoomNum, int Persons, string Beds)
@@ -95,24 +79,15 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
 
             db = Db4oEmbedded.OpenFile(config, path);
-            var rooms = new List<Rooms>();
+            
             var room = new Rooms();
-            IObjectSet result = db.QueryByExample(typeof(Rooms));
+            room.RoomId = roomID;
+            room.Booked = true;
+            room.NumberOfBeds = Beds;
+            room.NumberOfPersons = Persons;
+            room.RoomNumber = RoomNum;
 
-            foreach (var x in result)
-            {
-                room = (Rooms)x;
-                rooms.Add(new Rooms
-
-
-                {
-                    RoomId = room.RoomId,
-                    RoomNumber = room.RoomNumber,
-                    NumberOfPersons = room.NumberOfPersons,
-                    NumberOfBeds = room.NumberOfBeds
-                   
-                });
-            }
+            db.Store(room);
 
         }
         public static Reservation GetReservation(int ResNumber)
