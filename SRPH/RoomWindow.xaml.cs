@@ -28,7 +28,7 @@ namespace SRPH
         public RoomWindow(int Roomid)
         {
             InitializeComponent();
-            Class1.GetRoom(Roomid)
+            Class1.GetRoom(Roomid);
             //wywowałac metoda ładującą dane z bazy danych
 
         }
@@ -71,6 +71,7 @@ namespace SRPH
         {
             //TODO sprawdzenie poprawnosci i zapis do bazy
             compatibilityForm = true;
+            int RoomID = 1;
             int NumerPokoju = GetRoomNumber();
             int IlośćOsób = GetPersonNumber();
             string TypŁóżek = GetTypeBeds();
@@ -78,7 +79,7 @@ namespace SRPH
             {
                 //TODO zapis do bazy
                 MessageBox.Show("Zapisano!");
-                Class1.AddRooms(sender);
+                Class1.AddRooms(RoomID, NumerPokoju, IlośćOsób, TypŁóżek);
             }
             else
             {

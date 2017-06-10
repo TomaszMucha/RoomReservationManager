@@ -10,7 +10,7 @@ namespace GUI2DB
 {
     public class Base
     {
-        static string path = Directory.GetCurrentDirectory();
+        static string path = Directory.GetCurrentDirectory()+"\\database.srph";
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
@@ -38,7 +38,7 @@ namespace GUI2DB
 
             if (true)
             {
-                string path = Directory.GetCurrentDirectory();
+                string path = Directory.GetCurrentDirectory() + "\\database.srph";
                 IObjectContainer db;
                 IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
