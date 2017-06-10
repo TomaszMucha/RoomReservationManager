@@ -26,6 +26,7 @@ namespace SRPH
         {
             InitializeComponent();
             var Reservation = Class1.GetReservation(Number);
+            FilWindow(Reservation);
             //wywowałąc metoda ładującą dane z bazy danych
         }
 
@@ -33,6 +34,16 @@ namespace SRPH
         {
             InitializeComponent();
 
+        }
+        void FilWindow(SRPH_DataBase.Reservation Reservation)
+        {
+            TB_Name.Text= Reservation.Name;
+            TB_SurName.Text = Reservation.Surename;
+            TB_Pesel.Text = Reservation.PESEL;
+            TB_PhoneNumber.Text = Reservation.PhoneNumber.ToString();
+            DP_DateFrom.SelectedDate = Reservation.ReservationDataFrom;
+            DP_DateTo.SelectedDate = Reservation.ReservationDataTo;
+            
         }
         DateTime DatePickerFrom()
         {
