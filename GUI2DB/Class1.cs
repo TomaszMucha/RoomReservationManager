@@ -4,6 +4,7 @@ using Db4objects.Db4o;
 using Db4objects.Db4o.Config;
 using System.IO;
 using SRPH_DataBase;
+using System;
 
 namespace GUI2DB
 {
@@ -32,7 +33,7 @@ namespace GUI2DB
     public class Class1
     {
 
-        public static void CreateReservation(object sender)
+        public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, long PESEL, long PhoneNumber)
         {
 
             if (true)
@@ -50,10 +51,21 @@ namespace GUI2DB
                 //Rooms test = new Rooms();
                 //test.
 
+                var reservation = new Reservation();
+                reservation.IdClient = IdClient;
+                reservation.IdRoom = IdRoom;
+                reservation.PESEL = PESEL;
+                reservation.PhoneNumber = PhoneNumber;
+                reservation.ReservationDataFrom = ReservationDataFrom;
+                reservation.ReservationDataTo = ReservationDataTo;
+                reservation.RoomStandard = RoomStandard;
+                reservation.Surename = Surename;
+
+                db.Store(reservation);
 
 
                 var reservations = new List<Reservation>();
-                var reservation = new Reservation();
+                //var reservation = new Reservation();
                 IObjectSet result = db.QueryByExample(typeof(Reservation));
 
                 foreach (var x in result)
