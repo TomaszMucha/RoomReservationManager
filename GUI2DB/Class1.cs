@@ -103,7 +103,7 @@ namespace GUI2DB
             }
 
         }
-        public static Reservation GetReservation(long PESEL)
+        public static Reservation GetReservation(int ResNumber)
         {
             string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
@@ -157,6 +157,7 @@ namespace GUI2DB
             var result = db.Query<Reservation>(x => x.IdClient == ReserID);
             db.Delete(result);
         }
+        //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
         
     }
 }
