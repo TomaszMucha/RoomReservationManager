@@ -106,7 +106,6 @@ namespace GUI2DB
             return Reserv;
 
         }
-
         public static IList<Rooms> GetFreeRooms()
         {
             IObjectContainer db = Db4oFactory.OpenFile("C:\baza");          
@@ -114,7 +113,6 @@ namespace GUI2DB
             return FreeRooms;
 
         }
-
         public static void DeleteRoom(int roomID)
         {
             string path = Directory.GetCurrentDirectory();
@@ -143,6 +141,12 @@ namespace GUI2DB
             db = Db4oEmbedded.OpenFile(config, path);
             var result = db.Query<Reservation>(x => x.ReservationID == ResID);
             db.Delete(result);
+        }
+        public static IList<Rooms> GetRoom(int ID)
+        {
+            IObjectContainer db = Db4oFactory.OpenFile("C:\baza");
+            var Room = db.Query<Rooms>(x => x.RoomId == ID);
+            return Room;
         }
         //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
         
