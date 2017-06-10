@@ -8,6 +8,7 @@ namespace SRPH_DataBase
 {
     public class Reservation
     {
+        public int ReservationID { get; set; }
         public int IdRoom { get; set; }
         public int IdClient { get; set; }
         public DateTime ReservationDataFrom { get; set; }

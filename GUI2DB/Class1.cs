@@ -71,7 +71,7 @@ namespace GUI2DB
                 }
             }
         }
-        public static void AddRooms(object sender)
+        public static void AddRooms(int roomID, int RoomNum, int Persons, string Beds)
             
         {
             string path = Directory.GetCurrentDirectory();
@@ -143,7 +143,7 @@ namespace GUI2DB
             db.Delete(result);
 
         }
-        public static void DeleteReservation (int ReserID)
+        public static void DeleteReservation (int ResID)
         {
             string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
@@ -154,7 +154,7 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
             db = Db4oEmbedded.OpenFile(config, path);
-            var result = db.Query<Reservation>(x => x.IdClient == ReserID);
+            var result = db.Query<Reservation>(x => x.ReservationID == ResID);
             db.Delete(result);
         }
         
