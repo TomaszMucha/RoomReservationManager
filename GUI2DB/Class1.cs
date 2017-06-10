@@ -13,7 +13,7 @@ namespace GUI2DB
         IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
-        public List<Client> ClientList { get; set; }
+        
         void test()
         {
             string path = Directory.GetCurrentDirectory();
@@ -71,21 +71,21 @@ namespace GUI2DB
                 }
             }
         }
-        public static void AddRooms()
+        public static void AddRooms(object sender)
             
         {
             string path = Directory.GetCurrentDirectory();
             IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
 
             db = Db4oEmbedded.OpenFile(config, path);
             var rooms = new List<Rooms>();
-            var room = new Reservation();
-            IObjectSet result = db.QueryByExample(typeof(Reservation));
+            var room = new Rooms();
+            IObjectSet result = db.QueryByExample(typeof(Rooms));
 
             foreach (var x in result)
             {
@@ -105,9 +105,40 @@ namespace GUI2DB
         }
         public static Reservation GetReservation(long PESEL)
         {
+            string path = Directory.GetCurrentDirectory();
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
             var results = db.Query<Reservation>(x => x.PESEL == PESEL);
-            Reservation Reserv = result.First();
+            Reservation Reserv = results.First();
             return Reserv;
+
+        }
+
+        public static void GetFreeRooms()
+        {
+            IObjectContainer db = Db4oFactory.OpenFile("C:\baza");          
+            var FreeRooms = db.Query<Rooms>(x=>x.Booked==false);
+        }
+
+        public static void DeleteRoom(int roomID)
+        {
+            string path = Directory.GetCurrentDirectory();
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
+            var result= db.Query<Rooms>(x => x.RoomId == roomID);
+            db.Delete(result);
 
         }
         

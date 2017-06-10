@@ -12,5 +12,6 @@ namespace SRPH_DataBase
         public int RoomNumber { get; set; }
         public int NumberOfPersons { get; set; }
         public string NumberOfBeds { get; set; }
+        public bool Booked { get; set; }
     }
 }
