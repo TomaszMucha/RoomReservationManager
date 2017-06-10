@@ -114,7 +114,7 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
             db = Db4oEmbedded.OpenFile(config, path);
-            var results = db.Query<Reservation>(x => x.PESEL == PESEL);
+            var results = db.Query<Reservation>(x => x.ReservationID == ResNumber);
             Reservation Reserv = results.First();
             return Reserv;
 
