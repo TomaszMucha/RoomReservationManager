@@ -203,7 +203,6 @@ namespace GUI2DB
 
             db = Db4oEmbedded.OpenFile(config, path);
             var Rooms = db.Query<Rooms>();
-            db.Close();
             return Rooms;
         }
         public static IList<Reservation> GetReservations()
@@ -218,7 +217,6 @@ namespace GUI2DB
 
             db = Db4oEmbedded.OpenFile(config, path);
             var Reservations = db.Query<Reservation>();
-            db.Close();
             return Reservations;
         }
     }
