@@ -21,7 +21,7 @@ namespace SRPH
         public RoomWindow(int Roomid)
         {
             InitializeComponent();
-            GUI2DB.BUI2DB.GetRoom(Roomid);
+            GUI2DB.GUI2DB.GetRoom(Roomid);
             //wywowałac metoda ładującą dane z bazy danych
 
         }
@@ -71,14 +71,14 @@ namespace SRPH
             if (compatibilityForm == true)
             {
                 //TODO zapis do bazy
-<<<<<<< HEAD
+
                 MessageBox.Show("Zapisano!");
-                GUI2DB.BUI2DB.AddRooms(GUI2DB.BUI2DB.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
-=======
-                Class1.AddRooms(Class1.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
+                GUI2DB.GUI2DB.AddRooms(GUI2DB.GUI2DB.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
+
+                GUI2DB.GUI2DB.AddRooms(GUI2DB.GUI2DB.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
                 MessageBox.Show("Zapisano!");
                 this.Close();
->>>>>>> dadc877d45b4b9a838c29722f8f5121ad22d810b
+
             }
             else
             {

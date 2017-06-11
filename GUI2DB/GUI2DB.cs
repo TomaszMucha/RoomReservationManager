@@ -30,7 +30,7 @@ namespace GUI2DB
 
     }
 
-    public class BUI2DB
+    public class GUI2DB
     {
 
         public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
