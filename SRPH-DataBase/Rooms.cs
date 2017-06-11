@@ -14,7 +14,7 @@ namespace SRPH_DataBase
         public string NumberOfBeds { get; set; }
         public bool Booked { get; set; }
 
-        public Rooms(int? RoomNumber, int? NumberOfPerson, string NumberOfBeds)
+        public Rooms(int? RoomNumber, int? NumberOfPersons, string NumberOfBeds)
         {
 
             this.RoomId = 1;

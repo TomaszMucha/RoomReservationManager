@@ -71,8 +71,9 @@ namespace SRPH
             if (compatibilityForm == true)
             {
                 //TODO zapis do bazy
-                MessageBox.Show("Zapisano!");
                 Class1.AddRooms(Class1.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
+                MessageBox.Show("Zapisano!");
+                this.Close();
             }
             else
             {
