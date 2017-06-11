@@ -16,6 +16,7 @@
         <Button x:Name="btn_Edit" Content="Edytuj" HorizontalAlignment="Left" Margin="341,10,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btn_AddReservation" Content="Wykonaj Rezerwacje" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" Width="118" Click="btn_AddReservation_Click"/>
         <Button x:Name="btn_ShowAllReservation" Content="Pokaż wszytskie rezerwacje" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Width="154" Click="btn_ShowAllReservation_Click"/>
+        <DataGrid x:Name="DG_ShowData" HorizontalAlignment="Left" Margin="194,63,0,0" VerticalAlignment="Top" Height="246" Width="313"/>
 
     </Grid>
 </Window>
