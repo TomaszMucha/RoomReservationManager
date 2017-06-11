@@ -109,6 +109,7 @@ namespace GUI2DB
             var results = db.Query<Reservation>(x => x.ReservationID == ResNumber);
             Reservation Reserv = results.First();
             return Reserv;
+            //jak jest puste to się wywala, trzeba to jakoś obudować
 
         }
         public static IList<Rooms> GetFreeRooms()
@@ -159,6 +160,20 @@ namespace GUI2DB
             return Room;
         }
         //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
+        public static IList<Rooms> GetRooms ()
+        {
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
+            var Rooms = db.Query<Rooms>();
+            return Rooms;
+        }
         
     }
 }
