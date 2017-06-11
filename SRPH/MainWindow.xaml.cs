@@ -52,14 +52,9 @@ namespace SRPH
 
         private void btn_ShowAllReservation_Click(object sender, RoutedEventArgs e)
         {
-            var test =GUI2DB.GUI2DB.GetReservations();
-            //var results = new List<MyCustomClass>();
-            //results.Add(new MyCustomClass() { ObjectID = 1, Name = "Nazwa 1", Description = "Description 1" });
-            //results.Add(new MyCustomClass() { ObjectID = 2, Name = "Nazwa 2", Description = "Description 2" });
-            //results.Add(new MyCustomClass() { ObjectID = 3, Name = "Nazwa 3", Description = "Description 3" });
-            DG_ShowData.ItemsSource = test;
             var result = GUI2DB.GUI2DB.GetReservations();
             DG_ShowData.ItemsSource = result;
+            
         }
 
         private void btn_ShowAllRooms_Click(object sender, RoutedEventArgs e)
