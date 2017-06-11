@@ -64,7 +64,6 @@ namespace SRPH
         {
             //TODO sprawdzenie poprawnosci i zapis do bazy
             compatibilityForm = true;
-            int RoomID = 1;
             int NumerPokoju = GetRoomNumber();
             int IlośćOsób = GetPersonNumber();
             string TypŁóżek = GetTypeBeds();
@@ -75,8 +74,6 @@ namespace SRPH
                 MessageBox.Show("Zapisano!");
                 GUI2DB.GUI2DB.AddRooms(GUI2DB.GUI2DB.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
 
-                GUI2DB.GUI2DB.AddRooms(GUI2DB.GUI2DB.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
-                MessageBox.Show("Zapisano!");
                 this.Close();
 
             }
