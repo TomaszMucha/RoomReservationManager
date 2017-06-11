@@ -105,7 +105,35 @@ namespace GUI2DB
             Reservation Reserv = results.First();
             return Reserv;
             //jak jest puste to się wywala, trzeba to jakoś obudować
+            //try catch łapiesz i wywalasz komuniakt ex brak rezerwacji o danym idp-
 
+        }
+        public static int GetRoomId()
+        {
+            int back = 0;
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
+            {
+                IObjectSet result = db.QueryByExample(new Rooms(null, null, null));
+                Rooms found;
+                if (result.HasNext())
+                {
+                    do
+                    {
+                        found = (Rooms)result.Next();
+                        if (found.RoomId > back)
+                        {
+                            back = (int)found.RoomId;
+                        }
+                    } while (result.HasNext());
+                }
+                else
+                {
+                    back = 1;
+                }
+
+                return back;
+            }
         }
         public static IList<Rooms> GetFreeRooms()
         {

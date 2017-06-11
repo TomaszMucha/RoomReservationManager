@@ -72,40 +72,14 @@ namespace SRPH
             {
                 //TODO zapis do bazy
                 MessageBox.Show("Zapisano!");
-                Class1.AddRooms(GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
+                Class1.AddRooms(Class1.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
             }
             else
             {
                 MessageBox.Show("Popraw bo z dupy masz te dane!");
             }
         }
-        private int GetRoomId()
-        {
-            int back = 0;
-            string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
-            {
-                IObjectSet result = db.QueryByExample(new Rooms(null, null, null));
-                Rooms found;
-                if (result.HasNext())
-                {
-                    do
-                    {
-                        found = (Rooms)result.Next();
-                        if (found.RoomId>back)
-                        {
-                            back = (int)found.RoomId;
-                        }
-                    } while (result.HasNext());
-                }
-                else
-                {
-                    back = 1;
-                }
 
-                return back;
-            }
-        }
         private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
