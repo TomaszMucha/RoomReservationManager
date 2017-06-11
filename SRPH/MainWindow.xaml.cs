@@ -49,5 +49,10 @@ namespace SRPH
             ReservationWindow AddReservation = new ReservationWindow(0);
             AddReservation.ShowDialog();
         }
+
+        private void btn_ShowAllReservation_Click(object sender, RoutedEventArgs e)
+        {
+           //Class1.ro
+        }
     }
 }
