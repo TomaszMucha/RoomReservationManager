@@ -1,17 +1,10 @@
-﻿using GUI2DB;
+﻿using Db4objects.Db4o;
+using GUI2DB;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using SRPH_DataBase;
 
 namespace SRPH
 {
@@ -79,11 +72,38 @@ namespace SRPH
             {
                 //TODO zapis do bazy
                 MessageBox.Show("Zapisano!");
-                Class1.AddRooms(RoomID, NumerPokoju, IlośćOsób, TypŁóżek);
+                Class1.AddRooms(GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
             }
             else
             {
                 MessageBox.Show("Popraw bo z dupy masz te dane!");
+            }
+        }
+        private int GetRoomId()
+        {
+            int back = 0;
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
+            {
+                IObjectSet result = db.QueryByExample(new Rooms(null, null, null));
+                Rooms found;
+                if (result.HasNext())
+                {
+                    do
+                    {
+                        found = (Rooms)result.Next();
+                        if (found.RoomId>back)
+                        {
+                            back = (int)found.RoomId;
+                        }
+                    } while (result.HasNext());
+                }
+                else
+                {
+                    back = 1;
+                }
+
+                return back;
             }
         }
         private void btn_Close_Click(object sender, RoutedEventArgs e)

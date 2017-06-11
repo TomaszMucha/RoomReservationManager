@@ -83,12 +83,7 @@ namespace GUI2DB
 
             db = Db4oEmbedded.OpenFile(config, path);
             
-            var room = new Rooms();
-            room.RoomId = roomID;
-            room.Booked = true;
-            room.NumberOfBeds = Beds;
-            room.NumberOfPersons = Persons;
-            room.RoomNumber = RoomNum;
+            var room = new Rooms(RoomNum, Persons, Beds);
 
             db.Store(room);
             db.Commit();
