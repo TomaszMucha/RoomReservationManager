@@ -200,8 +200,8 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
-
             db = Db4oEmbedded.OpenFile(config, path);
+
             var Rooms = db.Query<Rooms>();
             return Rooms;
         }
@@ -219,6 +219,7 @@ namespace GUI2DB
             var Reservations = db.Query<Reservation>();
             return Reservations;
         }
+
     }
 }
 

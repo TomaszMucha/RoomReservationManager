@@ -54,13 +54,14 @@ namespace SRPH
         {
             var result = GUI2DB.GUI2DB.GetReservations();
             DG_ShowData.ItemsSource = result;
-            
         }
 
         private void btn_ShowAllRooms_Click(object sender, RoutedEventArgs e)
         {
             var result = GUI2DB.GUI2DB.GetRooms();
             DG_ShowData.ItemsSource = result;
+            GUI2DB.GUI2DB.CloseDB();
+
 
         }
     }
