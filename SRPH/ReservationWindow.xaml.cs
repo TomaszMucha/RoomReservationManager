@@ -25,7 +25,7 @@ namespace SRPH
         public ReservationWindow(int Number)
         {
             InitializeComponent();
-            var Reservation = Class1.GetReservation(Number);
+            var Reservation = GUI2DB.BUI2DB.GetReservation(Number);
             FilWindow(Reservation);
             //wywowałąc metoda ładującą dane z bazy danych
         }
@@ -146,7 +146,7 @@ namespace SRPH
             if (compatibilityForm == true)
             {
                 //TODO zapis do bazy
-                Class1.CreateReservation(IdRoom, IdClient, DataOd, DataDo, RoomStandard, Imie, Nazwisko, Pesel, Telefon);
+                GUI2DB.BUI2DB.CreateReservation(IdRoom, IdClient, DataOd, DataDo, RoomStandard, Imie, Nazwisko, Pesel, Telefon);
                 MessageBox.Show("Zapisano!");
                 this.Close();
             }
