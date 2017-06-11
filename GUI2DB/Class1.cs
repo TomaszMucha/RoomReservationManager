@@ -178,7 +178,15 @@ namespace GUI2DB
         }
         public static IList<Rooms> GetRoom(int ID)
         {
-            IObjectContainer db = Db4oFactory.OpenFile("C:\baza");
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
             var Room = db.Query<Rooms>(x => x.RoomId == ID);
             return Room;
         }
@@ -189,15 +197,28 @@ namespace GUI2DB
             IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
 
             db = Db4oEmbedded.OpenFile(config, path);
             var Rooms = db.Query<Rooms>();
             return Rooms;
         }
-        
+        public static IList<Reservation> GetReservations()
+        {
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
+            var Reservations = db.Query<Reservation>();
+            return Reservations;
+        }
     }
 }
 
