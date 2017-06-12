@@ -46,8 +46,8 @@ namespace SRPH
 
         private void btn_Reservation_Click(object sender, RoutedEventArgs e)
         {
-            ReservationWindow AddReservation = new ReservationWindow(0);
-            AddReservation.ShowDialog();
+            var result = GUI2DB.GUI2DB.GetReservations();
+            DG_ShowData.ItemsSource = result;
         }
 
         private void btn_ShowAllReservation_Click(object sender, RoutedEventArgs e)
@@ -60,9 +60,13 @@ namespace SRPH
         {
             var result = GUI2DB.GUI2DB.GetRooms();
             DG_ShowData.ItemsSource = result;
-            GUI2DB.GUI2DB.CloseDB();
 
+        }
 
+        private void btn_Rooms_Click(object sender, RoutedEventArgs e)
+        {
+            var result = GUI2DB.GUI2DB.GetRooms();
+            DG_ShowData.ItemsSource = result;
         }
     }
 }

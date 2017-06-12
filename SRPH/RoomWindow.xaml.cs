@@ -71,9 +71,8 @@ namespace SRPH
             {
                 //TODO zapis do bazy
 
-                MessageBox.Show("Zapisano!");
                 GUI2DB.GUI2DB.AddRooms(GUI2DB.GUI2DB.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
-
+                MessageBox.Show("Zapisano!");
                 this.Close();
 
             }

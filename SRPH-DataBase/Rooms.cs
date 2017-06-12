@@ -11,16 +11,16 @@ namespace SRPH_DataBase
         public int? RoomId { get; set; }
         public int? RoomNumber { get; set; }
         public int? NumberOfPersons { get; set; }
-        public string NumberOfBeds { get; set; }
+        public string TypeOfBeds { get; set; }
         public bool Booked { get; set; }
 
-        public Rooms(int? RoomNumber, int? NumberOfPersons, string NumberOfBeds)
+        public Rooms(int? RoomID,int? RoomNumber, int? NumberOfPersons, string TypeOfBeds)
         {
 
-            this.RoomId = 1;
+            this.RoomId = RoomID;
             this.RoomNumber = RoomNumber;
             this.NumberOfPersons = NumberOfPersons;
-            this.NumberOfBeds = NumberOfBeds;
+            this.TypeOfBeds = TypeOfBeds;
             this.Booked = false;
         }
     }

@@ -68,7 +68,7 @@ namespace GUI2DB
 
             db = Db4oEmbedded.OpenFile(config, path);
             
-            var room = new Rooms(RoomNum, Persons, Beds);
+            var room = new Rooms(roomID,RoomNum, Persons, Beds);
 
             db.Store(room);
             db.Commit();
@@ -118,7 +118,7 @@ namespace GUI2DB
                 {
                     IdNumber = 1;
                 }
-
+                IdNumber++; //inkrementacja numeru
                 return IdNumber;
             }
         }
