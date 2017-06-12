@@ -35,28 +35,24 @@ namespace GUI2DB
 
         public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
-            if (true)
-            {
-                string path = Directory.GetCurrentDirectory() + "\\database.srph";
-                IObjectContainer db;
-                IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
-                config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
-                config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
-                config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+            db = Db4oEmbedded.OpenFile(config, path);
+            //tets podłaczenia do bazy danych
+            //Rooms test = new Rooms();
+            //test.
 
-                db = Db4oEmbedded.OpenFile(config, path);
-                //tets podłaczenia do bazy danych
-                //Rooms test = new Rooms();
-                //test.
+            var reservation = new Reservation(ReservationDataFrom, ReservationDataTo, RoomStandard, Name,Surename,PESEL,PhoneNumber);
 
-                var reservation = new Reservation(ReservationDataFrom, ReservationDataTo, RoomStandard, Name,Surename,PESEL,PhoneNumber);
-
-                db.Store(reservation);
-                db.Commit();
-                db.Close();
-            }
+            db.Store(reservation);
+            db.Commit();
+            db.Close();
         }
         public static void AddRooms(int roomID, int RoomNum, int Persons, string Beds)
             
