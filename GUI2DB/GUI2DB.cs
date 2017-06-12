@@ -51,23 +51,11 @@ namespace GUI2DB
                 //Rooms test = new Rooms();
                 //test.
 
-                var reservation = new Reservation();
-                reservation.IdClient = IdClient;
-                reservation.IdRoom = IdRoom;
-                reservation.PESEL = PESEL;
-                reservation.PhoneNumber = PhoneNumber;
-                reservation.ReservationDataFrom = ReservationDataFrom;
-                reservation.ReservationDataTo = ReservationDataTo;
-                reservation.RoomStandard = RoomStandard;
-                reservation.Surename = Surename;
-                reservation.Name = Name;
+                var reservation = new Reservation(ReservationDataFrom, ReservationDataTo, RoomStandard, Name,Surename,PESEL,PhoneNumber);
 
                 db.Store(reservation);
                 db.Commit();
                 db.Close();
-
-
-
             }
         }
         public static void AddRooms(int roomID, int RoomNum, int Persons, string Beds)
