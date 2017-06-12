@@ -19,6 +19,19 @@ namespace SRPH
     /// <summary>
     /// Interaction logic for ReservationWindow.xaml
     /// </summary>
+    /// 
+    public struct DataRooms
+    {
+        public DataRooms(int intValue, string strValue)
+        {
+            RoomNumber = intValue;
+            TypeOfBeds = strValue;
+        }
+
+        public int RoomNumber { get; private set; }
+        public string TypeOfBeds { get; private set; }
+    }
+
     public partial class ReservationWindow : Window
     {
         public bool compatibilityForm { get; set; }
@@ -27,7 +40,7 @@ namespace SRPH
             InitializeComponent();
             var Reservation = GUI2DB.GUI2DB.GetReservation(Number);
             FilWindow(Reservation);
-            
+
             //wywowałąc metoda ładującą dane z bazy danych
         }
 
@@ -38,13 +51,13 @@ namespace SRPH
         }
         void FilWindow(SRPH_DataBase.Reservation Reservation)
         {
-            TB_Name.Text= Reservation.Name;
+            TB_Name.Text = Reservation.Name;
             TB_SurName.Text = Reservation.Surename;
             TB_Pesel.Text = Reservation.PESEL;
             TB_PhoneNumber.Text = Reservation.PhoneNumber.ToString();
             DP_DateFrom.SelectedDate = Reservation.ReservationDataFrom;
             DP_DateTo.SelectedDate = Reservation.ReservationDataTo;
-            
+
         }
         DateTime DatePickerFrom()
         {
@@ -161,6 +174,33 @@ namespace SRPH
         {
             this.Close();
         }
-    }
 
+        private void Grid_Initialized(object sender, EventArgs e)
+        {
+            var test = GUI2DB.GUI2DB.GetFreeRooms();
+            var listFreeRooms = new List<DataRooms>();
+
+            foreach (var item in test)
+            {
+                listFreeRooms.Add(new DataRooms(item.RoomNumber.Value, item.TypeOfBeds));
+            }
+            foreach (var item in test)
+            {
+                CB_FreeRooms.Items.Add(item.RoomNumber);
+            }
+        }
+
+        private void CB_FreeRooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = CB_FreeRooms.SelectedIndex;
+            int room = 0;
+            var test = GUI2DB.GUI2DB.GetFreeRooms();
+            for (int i = 0; i < index; i++)
+            {
+                room = test[i].RoomNumber.Value;
+            }
+            TB_RoomNumber.Text = room.ToString();
+        }
+
+    }
 }

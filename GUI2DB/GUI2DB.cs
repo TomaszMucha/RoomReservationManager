@@ -12,7 +12,7 @@ namespace GUI2DB
     public class Base
     {
         static string path = Directory.GetCurrentDirectory() + "\\database.srph";
-        IObjectContainer db;
+        public IObjectContainer db;
         public List<Rooms> RoomsList { get; set; }
         public List<Reservation> ReservationList { get; set; }
         
@@ -124,7 +124,9 @@ namespace GUI2DB
         }
         public static IList<Rooms> GetFreeRooms()
         {
-            IObjectContainer db = Db4oFactory.OpenFile("C:\baza");          
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            IObjectContainer db = Db4oFactory.OpenFile(path);
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
             var FreeRooms = db.Query<Rooms>(x=>x.Booked==false);
             return FreeRooms;
 
@@ -201,7 +203,7 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
-
+            
             db = Db4oEmbedded.OpenFile(config, path);
             var Reservations = db.Query<Reservation>();
             return Reservations;
