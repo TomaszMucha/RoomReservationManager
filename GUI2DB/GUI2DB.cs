@@ -5,6 +5,7 @@ using Db4objects.Db4o.Config;
 using System.IO;
 using SRPH_DataBase;
 using System;
+using Db4objects.Db4o.Linq;
 
 namespace GUI2DB
 {
@@ -98,25 +99,27 @@ namespace GUI2DB
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
-                IObjectSet result = db.QueryByExample(new Rooms(null, null, null));
-                Rooms found;
-                if (result.HasNext())
+                var result = (from Rooms r in db select r).ToList();
+
+                int IdNumber = 0;
+
+                if (result.Count!=0)
                 {
-                    do
+                    foreach (var item in result)
                     {
-                        found = (Rooms)result.Next();
-                        if (found.RoomId > back)
+                        if (item.RoomId>IdNumber)
                         {
-                            back = (int)found.RoomId;
+                            IdNumber = (int)item.RoomId;
                         }
-                    } while (result.HasNext());
+                    
+                    }
                 }
                 else
                 {
-                    back = 1;
+                    IdNumber = 1;
                 }
 
-                return back;
+                return IdNumber;
             }
         }
         public static IList<Rooms> GetFreeRooms()
