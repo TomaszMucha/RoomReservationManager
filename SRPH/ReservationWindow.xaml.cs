@@ -27,6 +27,7 @@ namespace SRPH
             InitializeComponent();
             var Reservation = GUI2DB.GUI2DB.GetReservation(Number);
             FilWindow(Reservation);
+            
             //wywowałąc metoda ładującą dane z bazy danych
         }
 

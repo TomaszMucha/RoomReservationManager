@@ -30,7 +30,7 @@ namespace GUI2DB
 
     }
 
-    public class GUI2DB
+    public class Class1
     {
 
         public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
@@ -200,8 +200,8 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
-            db = Db4oEmbedded.OpenFile(config, path);
 
+            db = Db4oEmbedded.OpenFile(config, path);
             var Rooms = db.Query<Rooms>();
             return Rooms;
         }
@@ -219,7 +219,6 @@ namespace GUI2DB
             var Reservations = db.Query<Reservation>();
             return Reservations;
         }
-
     }
 }
 
