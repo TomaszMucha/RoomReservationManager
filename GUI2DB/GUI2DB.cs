@@ -192,19 +192,24 @@ namespace GUI2DB
             var Rooms = db.Query<Rooms>();
             return Rooms;
         }
-        public static IList<Reservation> GetReservations()
+        public static List<Reservation> GetReservations()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            IObjectContainer db;
+
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
-            db = Db4oEmbedded.OpenFile(config, path);
-            var Reservations = db.Query<Reservation>();
-            return Reservations;
+            List<Reservation> Reservations; 
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+            {
+                Reservations = (from Reservation r in db select r).ToList();
+            }
+            return Reservations.ToList<Reservation>();
+
         }
 
     }
