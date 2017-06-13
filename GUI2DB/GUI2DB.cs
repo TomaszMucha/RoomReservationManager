@@ -95,7 +95,6 @@ namespace GUI2DB
                 return IdNumber;
             }
         }
-
         public static int GetReservationId()
         {
             int back = 0;
@@ -124,30 +123,20 @@ namespace GUI2DB
                 return IdNumber;
             }
         }
-
         public static IEnumerable<Rooms> GetFreeRooms()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-
-            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
-
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
-
-
-            
-            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+                 
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
 
-               var Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==true);
+               var Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==false);
                 return Room;
             }
      
             
 
         }
-
         public static void DeleteRoom(int roomID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
@@ -166,7 +155,6 @@ namespace GUI2DB
             db.Close();
 
         }
-
         public static void DeleteReservation (int ResID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
@@ -183,7 +171,6 @@ namespace GUI2DB
             db.Commit();
             db.Close();
         }
-
         public static Rooms GetRoom(int ID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
@@ -208,7 +195,6 @@ namespace GUI2DB
            
 
         }
-
         //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
         public static IList<Rooms> GetRooms ()
         {
@@ -228,7 +214,6 @@ namespace GUI2DB
             return Rooms.ToList<Rooms>();
 
         }
-
         public static List<Reservation> GetReservations()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
@@ -248,8 +233,17 @@ namespace GUI2DB
             return Reservations.ToList<Reservation>();
 
         }
+        public static void ShowFreeRoom(DateTime TimeStart, DateTime TimeEnd)
+         {
+             using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
+             {
 
-    }
+  
+             }
+         }
+
+
+}
 }
 
 
