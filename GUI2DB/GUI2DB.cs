@@ -95,21 +95,20 @@ namespace GUI2DB
         }
         public static int GetRoomId()
         {
-            int back = 0;
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
                 var result = (from Rooms r in db select r).ToList();
 
-                int IdNumber = 0;
+                int IdNumber = 1;
 
                 if (result.Count!=0)
                 {
                     foreach (var item in result)
                     {
-                        if (item.RoomId>IdNumber)
+                        if (item.RoomId==IdNumber)
                         {
-                            IdNumber = (int)item.RoomId;
+                            IdNumber = (int)item.RoomId+1;
                         }
                     
                     }
@@ -118,16 +117,57 @@ namespace GUI2DB
                 {
                     IdNumber = 1;
                 }
-                IdNumber++; //inkrementacja numeru
                 return IdNumber;
             }
         }
 
-        public static IList<Rooms> GetFreeRooms()
+        public static int GetReservationId()
         {
-            IObjectContainer db = Db4oFactory.OpenFile("C:\baza");          
-            var FreeRooms = db.Query<Rooms>(x=>x.Booked==false);
-            return FreeRooms;
+            int back = 0;
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
+            {
+                var result = (from Reservation r in db select r).ToList();
+
+                int IdNumber = 1;
+
+                if (result.Count != 0)
+                {
+                    foreach (var item in result)
+                    {
+                        if (item.ReservationID == IdNumber)
+                        {
+                            IdNumber = (int)item.ReservationID + 1;
+                        }
+
+                    }
+                }
+                else
+                {
+                    IdNumber = 1;
+                }
+                return IdNumber;
+            }
+        }
+
+        public static List<Rooms> GetFreeRooms()
+        {
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            List<Rooms> Room = new List<Rooms>();
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+            {
+                //Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==true);
+            }
+     
+            return Room;
 
         }
 
