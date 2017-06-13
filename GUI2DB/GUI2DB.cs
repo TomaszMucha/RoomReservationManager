@@ -123,14 +123,14 @@ namespace GUI2DB
                 return IdNumber;
             }
         }
-        public static IList<Rooms> GetFreeRooms()
+        public static IEnumerable<Rooms> GetFreeRooms()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
                  
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
-                var Room = db.Query<Rooms>(x => x.Booked == false);
-                //var Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==false);                        
+                //var Room = db.Query<Rooms>(x => x.Booked == false);
+                var Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==false);                        
                 return Room;
             }
      
