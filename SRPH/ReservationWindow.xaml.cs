@@ -95,8 +95,8 @@ namespace SRPH
             if (Name == string.Empty)
             {
                 compatibilityForm = false;
+                TB_Name.Foreground = System.Windows.Media.Brushes.Red;
                 MessageBox.Show("Popraw Imię");
-
             }
 
             return Name;
@@ -107,8 +107,8 @@ namespace SRPH
             if (SurName == string.Empty)
             {
                 compatibilityForm = false;
+                TB_SurName.Foreground = System.Windows.Media.Brushes.Red;
                 MessageBox.Show("Popraw Nazwisko");
-
             }
 
             return SurName;
@@ -120,6 +120,7 @@ namespace SRPH
             if (Pesel == string.Empty || ret == false)
             {
                 compatibilityForm = false;
+                TB_Pesel.Foreground = System.Windows.Media.Brushes.Red;
                 MessageBox.Show("Popraw numer PESEL");
             }
 
@@ -132,8 +133,8 @@ namespace SRPH
             if (PhoneNumber == 0 || result == false)
             {
                 compatibilityForm = false;
+                TB_PhoneNumber.Foreground = System.Windows.Media.Brushes.Red;
                 MessageBox.Show("Popraw numer telefonu");
-
             }
 
             return PhoneNumber;

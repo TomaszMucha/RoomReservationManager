@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using SRPH_DataBase;
+using System.Drawing;
 
 namespace SRPH
 {
@@ -33,6 +34,8 @@ namespace SRPH
             if (RoomNumber == 0 || result == false)
             {
                 compatibilityForm = false;
+                TB_Number.Foreground = System.Windows.Media.Brushes.Red;
+                MessageBox.Show("Popraw numej pokoju");
             }
 
             return RoomNumber;
@@ -45,6 +48,8 @@ namespace SRPH
             if (PersonNumber == 0 || result == false)
             {
                 compatibilityForm = false;
+                TB_NumberOfPerson.Foreground = System.Windows.Media.Brushes.Red;
+                MessageBox.Show("Popraw ilość osób");
             }
 
             return PersonNumber;
@@ -55,6 +60,8 @@ namespace SRPH
             if (TypeBeds == string.Empty)
             {
                 compatibilityForm = false;
+                TB_TypesOfBeds.Foreground = System.Windows.Media.Brushes.Red;
+                MessageBox.Show("Popraw typ łóżek");
             }
 
             return TypeBeds;
