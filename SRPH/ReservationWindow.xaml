@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SRPH"
         mc:Ignorable="d"
-        Title="ReservationWindow" Height="300" Width="338.244">
+        Title="ReservationWindow" Height="351.15" Width="369.244">
     <Grid Initialized="Grid_Initialized">
-        <Label x:Name="lbl_Date" Content="Data Od-Do" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TB_Name" HorizontalAlignment="Left" Height="23" Margin="129,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="3"/>
-        <Label x:Name="lbl_Name" Content="Imię" HorizontalAlignment="Left" Margin="26,74,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TB_SurName" HorizontalAlignment="Left" Height="23" Margin="129,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4"/>
-        <Label x:Name="lbl_SurName" Content="Nazwisko" HorizontalAlignment="Left" Margin="26,110,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TB_Pesel" HorizontalAlignment="Left" Height="23" Margin="129,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="5"/>
-        <Label x:Name="lbl_Pesel" Content="Pesel" HorizontalAlignment="Left" Margin="26,141,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_PhoneNumber" Content="Numer Telefonu" HorizontalAlignment="Left" Margin="26,169,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="DP_DateFrom" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" TabIndex="1" AutomationProperties.HelpText="hh" Text="txt"/>
-        <DatePicker x:Name="DP_DateTo" HorizontalAlignment="Left" Margin="207,10,0,0" VerticalAlignment="Top" TabIndex="2"/>
-        <Label x:Name="lbl_Standart" Content="Standard" HorizontalAlignment="Left" Margin="26,197,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TB_PhoneNumber" HorizontalAlignment="Left" Height="23" Margin="129,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="6"/>
-        <Button x:Name="btn_Close" Content="Zamknij" HorizontalAlignment="Left" Margin="245,239,0,0" VerticalAlignment="Top" Width="75" Click="btn_Close_Click" TabIndex="8"/>
-        <Button x:Name="btn_Save" Content="Zapisz" HorizontalAlignment="Left" Margin="141,239,0,0" VerticalAlignment="Top" Width="75" Click="btn_Save_Click" TabIndex="7"/>
-        <Label x:Name="lbl_Rooms" Content="Typ pokoju" HorizontalAlignment="Left" Margin="26,36,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="CB_FreeRooms" HorizontalAlignment="Left" Margin="129,39,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CB_FreeRooms_SelectionChanged"/>
-        <TextBox x:Name="TB_RoomNumber" HorizontalAlignment="Left" Height="23" Margin="263,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" TabIndex="3" IsEnabled="False"/>
+        <Label x:Name="lbl_Date" Content="Data Od&#xD;&#xA;&#xD;&#xA;        Do" HorizontalAlignment="Left" Margin="63,13,0,0" VerticalAlignment="Top" Height="60"/>
+        <TextBox x:Name="TB_Name" HorizontalAlignment="Left" Height="23" Margin="160,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="3"/>
+        <Label x:Name="lbl_Name" Content="Imię" HorizontalAlignment="Left" Margin="56,120,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_SurName" HorizontalAlignment="Left" Height="23" Margin="160,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4"/>
+        <Label x:Name="lbl_SurName" Content="Nazwisko" HorizontalAlignment="Left" Margin="57,156,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_Pesel" HorizontalAlignment="Left" Height="23" Margin="160,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="5"/>
+        <Label x:Name="lbl_Pesel" Content="Pesel" HorizontalAlignment="Left" Margin="56,187,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_PhoneNumber" Content="Numer Telefonu" HorizontalAlignment="Left" Margin="57,215,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DP_DateFrom" HorizontalAlignment="Left" Margin="160,13,0,0" VerticalAlignment="Top" TabIndex="1" AutomationProperties.HelpText="hh" Text="txt"/>
+        <DatePicker x:Name="DP_DateTo" HorizontalAlignment="Left" Margin="160,49,0,0" VerticalAlignment="Top" TabIndex="2"/>
+        <Label x:Name="lbl_Standart" Content="Standard" HorizontalAlignment="Left" Margin="56,243,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TB_PhoneNumber" HorizontalAlignment="Left" Height="23" Margin="160,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="6"/>
+        <Button x:Name="btn_Close" Content="Zamknij" Margin="0,0,10,15" Click="btn_Close_Click" TabIndex="8" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="btn_Save" Content="Zapisz" Margin="0,0,114,15" Click="btn_Save_Click" TabIndex="7" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+        <Label x:Name="lbl_Rooms" Content="Typ pokoju" HorizontalAlignment="Left" Margin="57,82,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CB_FreeRooms" HorizontalAlignment="Left" Margin="160,85,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CB_FreeRooms_SelectionChanged"/>
+        <TextBox x:Name="TB_RoomNumber" HorizontalAlignment="Left" Height="23" Margin="294,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" TabIndex="3" IsEnabled="False"/>
 
     </Grid>
 </Window>
