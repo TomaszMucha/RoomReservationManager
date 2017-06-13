@@ -96,7 +96,7 @@ namespace SRPH
             }
             else
             {
-                MessageBox.Show("Popraw bo z dupy masz te dane!");
+                //ten kod wywoła się jeśli jedna z danych nie jest zgodna
             }
         }
 

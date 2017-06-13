@@ -20,7 +20,7 @@ namespace GUI2DB
             
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
-                var reservation = new Reservation(ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
+                var reservation = new Reservation(IdRoom,ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
 
                 db.Store(reservation);
                 db.Commit();

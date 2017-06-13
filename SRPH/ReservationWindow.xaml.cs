@@ -30,10 +30,13 @@ namespace SRPH
 
         public int RoomNumber { get; private set; }
         public string TypeOfBeds { get; private set; }
+
     }
 
     public partial class ReservationWindow : Window
     {
+        public int RoomId { get; set; }
+
         public bool compatibilityForm { get; set; }
         public ReservationWindow(int Number)
         {
@@ -41,7 +44,6 @@ namespace SRPH
             var Reservation = GUI2DB.GUI2DB.GetReservation(Number);
             FilWindow(Reservation);
 
-            //wywowałąc metoda ładującą dane z bazy danych
         }
 
         public ReservationWindow()
@@ -143,8 +145,7 @@ namespace SRPH
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             compatibilityForm = true;
-            int IdRoom = 2;
-            int IdClient = 2;
+            int IdClient =0;
             List<string> RoomStandard = new List<string>();
             DateTime DataOd = DatePickerFrom();
             DateTime DataDo = DatePickerTo();
@@ -161,13 +162,13 @@ namespace SRPH
             if (compatibilityForm == true)
             {
                 //TODO zapis do bazy
-                GUI2DB.GUI2DB.CreateReservation(IdRoom, IdClient, DataOd, DataDo, RoomStandard, Imie, Nazwisko, Pesel, Telefon);
+                GUI2DB.GUI2DB.CreateReservation(RoomId, IdClient, DataOd, DataDo, RoomStandard, Imie, Nazwisko, Pesel, Telefon);
                 MessageBox.Show("Zapisano!");
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Popraw bo z dupy masz te dane!");
+                //ten kod wywoła się jeśli jedna z danych nie jest zgodna
             }
             //TODO sprawdzenie poprawnosci i zapis do bazy
         }
@@ -183,11 +184,7 @@ namespace SRPH
 
             foreach (var item in test)
             {
-                listFreeRooms.Add(new DataRooms(item.RoomNumber.Value, item.TypeOfBeds));
-            }
-            foreach (var item in test)
-            {
-                CB_FreeRooms.Items.Add(item.RoomNumber);
+                CB_FreeRooms.Items.Add(item.TypeOfBeds);
             }
         }
 
@@ -195,11 +192,9 @@ namespace SRPH
         {
             var index = CB_FreeRooms.SelectedIndex;
             int room = 0;
-            var test = GUI2DB.GUI2DB.GetFreeRooms();
-            for (int i = 0; i < index; i++)
-            {
-                room = test[i].RoomNumber.Value;
-            }
+            var roomlist = GUI2DB.GUI2DB.GetFreeRooms();
+            room = Int32.Parse(roomlist.ElementAt(index).RoomNumber.ToString());
+            RoomId = Int32.Parse(roomlist.ElementAt(index).RoomNumber.ToString());
             TB_RoomNumber.Text = room.ToString();
         }
 
