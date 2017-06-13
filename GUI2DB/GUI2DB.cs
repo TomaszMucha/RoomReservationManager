@@ -122,6 +122,7 @@ namespace GUI2DB
                 return IdNumber;
             }
         }
+
         public static IList<Rooms> GetFreeRooms()
         {
             IObjectContainer db = Db4oFactory.OpenFile("C:\baza");          
@@ -129,6 +130,7 @@ namespace GUI2DB
             return FreeRooms;
 
         }
+
         public static void DeleteRoom(int roomID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
@@ -147,6 +149,7 @@ namespace GUI2DB
             db.Close();
 
         }
+
         public static void DeleteReservation (int ResID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
@@ -163,12 +166,12 @@ namespace GUI2DB
             db.Commit();
             db.Close();
         }
+
         public static IList<Rooms> GetRoom(int ID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
-
+            IObjectContainer db;
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
@@ -177,21 +180,27 @@ namespace GUI2DB
             var Room = db.Query<Rooms>(x => x.RoomId == ID);
             return Room;
         }
+
         //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
         public static IList<Rooms> GetRooms ()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            IObjectContainer db;
+
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
-            db = Db4oEmbedded.OpenFile(config, path);
 
-            var Rooms = db.Query<Rooms>();
-            return Rooms;
+            List<Rooms> Rooms;
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+            {
+                Rooms = (from Rooms r in db select r).ToList();
+            }
+            return Rooms.ToList<Rooms>();
+
         }
+
         public static List<Reservation> GetReservations()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
