@@ -10,27 +10,6 @@ using Db4objects.Db4o.Linq;
 
 namespace GUI2DB
 {
-    public class Base
-    {
-        static string path = Directory.GetCurrentDirectory() + "\\database.srph";
-        IObjectContainer db;
-        public List<Rooms> RoomsList { get; set; }
-        public List<Reservation> ReservationList { get; set; }
-        
-        void test()
-        {
-            string path = Directory.GetCurrentDirectory();
-            IObjectContainer db;
-            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
-
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
-
-            db = Db4oEmbedded.OpenFile(config, path);
-        }
-
-    }
 
     public class GUI2DB
     {
@@ -38,23 +17,17 @@ namespace GUI2DB
         public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            IObjectContainer db;
-            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+            
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
+            {
+                var reservation = new Reservation(ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
 
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
-            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+                db.Store(reservation);
+                db.Commit();
+                db.Close();
+            }
 
-            db = Db4oEmbedded.OpenFile(config, path);
-            //tets podłaczenia do bazy danych
-            //Rooms test = new Rooms();
-            //test.
-
-            var reservation = new Reservation(ReservationDataFrom, ReservationDataTo, RoomStandard, Name,Surename,PESEL,PhoneNumber);
-
-            db.Store(reservation);
-            db.Commit();
-            db.Close();
+            
         }
         public static void AddRooms(int roomID, int RoomNum, int Persons, string Beds)
             
@@ -69,6 +42,7 @@ namespace GUI2DB
 
             db = Db4oEmbedded.OpenFile(config, path);
             
+
             var room = new Rooms(roomID,RoomNum, Persons, Beds);
 
             db.Store(room);
@@ -151,7 +125,7 @@ namespace GUI2DB
             }
         }
 
-        public static List<Rooms> GetFreeRooms()
+        public static IEnumerable<Rooms> GetFreeRooms()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
 
@@ -159,17 +133,18 @@ namespace GUI2DB
 
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
-
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
-            List<Rooms> Room = new List<Rooms>();
 
+            
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
-               //Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==true);
+
+               var Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==true);
+                return Room;
             }
      
-            return Room;
+            
 
         }
 
