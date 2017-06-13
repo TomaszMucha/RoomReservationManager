@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using SRPH_DataBase;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace SRPH
 {
@@ -22,10 +23,20 @@ namespace SRPH
         public RoomWindow(int Roomid)
         {
             InitializeComponent();
-            GUI2DB.GUI2DB.GetRoom(Roomid);
+            var Room = GUI2DB.GUI2DB.GetRoom(Roomid);
+            FilWindow(Room);
             //wywowałac metoda ładującą dane z bazy danych
 
         }
+
+        void FilWindow(SRPH_DataBase.Rooms Room)
+        {
+            TB_Number.Text = Room.RoomNumber.ToString(); ;
+            TB_NumberOfPerson.Text = Room.NumberOfPersons.ToString();
+            TB_TypesOfBeds.Text = Room.TypeOfBeds;
+        }
+
+
         int GetRoomNumber()
         {
             int RoomNumber ;

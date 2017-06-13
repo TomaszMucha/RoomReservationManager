@@ -164,9 +164,10 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
             List<Rooms> Room = new List<Rooms>();
+
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
-                //Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==true);
+               //Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==true);
             }
      
             return Room;
@@ -204,16 +205,26 @@ namespace GUI2DB
             
         }
 
-        public static IList<Rooms> GetRoom(int ID)
+        public static Rooms GetRoom(int ID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
                 var Room = db.Query<Rooms>(x => x.RoomId == ID);
                 return Room;
             }
             
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+            IObjectContainer db;
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
+
+            db = Db4oEmbedded.OpenFile(config, path);
+            var results = db.Query<Rooms>(x => x.RoomId == ID);
+            Rooms Room = results.First();
+            return Room;
+
         }
 
         //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
