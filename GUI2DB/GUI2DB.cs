@@ -237,9 +237,12 @@ namespace GUI2DB
          {
              using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
              {
+                
+                
+                var res = (from Reservation r in db select r).Where(r => r.ReservationDataFrom.CompareTo(TimeStart) > 0 && r.ReservationDataTo.CompareTo(TimeEnd) < 0).ToList();
 
-  
-             }
+
+            }
          }
 
 
