@@ -1,0 +1,13 @@
+diff a/GUI2DB/GUI2DB.cs b/GUI2DB/GUI2DB.cs	(rejected hunks)
+@@ -218,8 +218,10 @@
+             config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
+ 
+             db = Db4oEmbedded.OpenFile(config, path);
+-            var Room = db.Query<Rooms>(x => x.RoomId == ID);
++            var results = db.Query<Rooms>(x => x.RoomId == ID);
++            Rooms Room = results.First();
+             return Room;
++
+         }
+ 
+         //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
