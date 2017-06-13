@@ -7,7 +7,7 @@ namespace SRPH
     /// Interaction logic for ReservationWindow.xaml
     /// </summary>
     /// 
-   
+
 
     public partial class MainWindow : Window
     {
@@ -39,11 +39,15 @@ namespace SRPH
 
         private void btn_Reservation_Click(object sender, RoutedEventArgs e)
         {
+            int index = DG_ShowData.SelectedIndex;
+            var test = DG_ShowData.SelectedCells[0];
+            var res = test.Item;
             ReservationWindow AddReservation = new ReservationWindow(0);
             AddReservation.ShowDialog();
         }
         private void btn_Rooms_Click(object sender, RoutedEventArgs e)
         {
+
             RoomWindow AddRoom = new RoomWindow(2);
             AddRoom.ShowDialog();
         }
@@ -51,8 +55,8 @@ namespace SRPH
         {
             var result = GUI2DB.GUI2DB.GetReservations();
             DG_ShowData.ItemsSource = result;
-            DG_ShowData.Columns[0].Visibility = Visibility.Hidden;
-            DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
+            //DG_ShowData.Columns[0].Visibility = Visibility.Hidden;
+            //DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
 
         }
 
@@ -60,7 +64,7 @@ namespace SRPH
         {
             var result = GUI2DB.GUI2DB.GetRooms();
             DG_ShowData.ItemsSource = result;
-            DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
+            //DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
 
 
         }

@@ -18,8 +18,9 @@ namespace SRPH_DataBase
         public string PESEL { get; set; }
         public long PhoneNumber { get; set; }
 
-        public Reservation(int IdRoom,DateTime ReservationDataFrom, DateTime ReservationDataTo, List<String> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber, int IdReservation = 0)
+        public Reservation(int ReservationID, int IdRoom,DateTime ReservationDataFrom, DateTime ReservationDataTo, List<String> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
+            this.ReservationID = ReservationID;
             this.IdRoom = IdRoom;
             this.ReservationDataFrom = ReservationDataFrom;
             this.ReservationDataTo = ReservationDataTo;

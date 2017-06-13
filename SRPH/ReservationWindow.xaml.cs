@@ -146,6 +146,7 @@ namespace SRPH
         {
             compatibilityForm = true;
             int IdClient =0;
+            int ReservationID = GUI2DB.GUI2DB.GetReservationId();
             List<string> RoomStandard = new List<string>();
             DateTime DataOd = DatePickerFrom();
             DateTime DataDo = DatePickerTo();
@@ -162,7 +163,7 @@ namespace SRPH
             if (compatibilityForm == true)
             {
                 //TODO zapis do bazy
-                GUI2DB.GUI2DB.CreateReservation(RoomId, IdClient, DataOd, DataDo, RoomStandard, Imie, Nazwisko, Pesel, Telefon);
+                GUI2DB.GUI2DB.CreateReservation(ReservationID, RoomId, IdClient, DataOd, DataDo, RoomStandard, Imie, Nazwisko, Pesel, Telefon);
                 MessageBox.Show("Zapisano!");
                 this.Close();
             }

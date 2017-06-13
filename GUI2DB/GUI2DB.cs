@@ -14,13 +14,13 @@ namespace GUI2DB
     public class GUI2DB
     {
 
-        public static void CreateReservation(int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
+        public static void CreateReservation(int ReservationID,int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
             
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
-                var reservation = new Reservation(IdRoom,ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
+                var reservation = new Reservation(ReservationID,IdRoom, ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
 
                 db.Store(reservation);
                 db.Commit();
