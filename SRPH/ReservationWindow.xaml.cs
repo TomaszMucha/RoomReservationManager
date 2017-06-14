@@ -199,5 +199,18 @@ namespace SRPH
             TB_RoomNumber.Text = room.ToString();
         }
 
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Usunąć rezerwacje?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+            {
+
+            }
+            else
+            {
+                GUI2DB.GUI2DB.DeleteRoom(RoomId);
+                this.Close();
+
+            }
+        }
     }
 }

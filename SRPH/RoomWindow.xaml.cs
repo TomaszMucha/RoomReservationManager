@@ -15,15 +15,17 @@ namespace SRPH
     /// </summary>
     public partial class RoomWindow : Window
     {
+        public int RoomId { get; set; }
         public bool compatibilityForm { get; set; }
         public RoomWindow()
         {
             InitializeComponent();
         }
-        public RoomWindow(int Roomid)
+        public RoomWindow(int roomId)
         {
+            RoomId = roomId;
             InitializeComponent();
-            var Room = GUI2DB.GUI2DB.GetRoom(Roomid);
+            var Room = GUI2DB.GUI2DB.GetRoom(RoomId);
             FilWindow(Room);
             //wywowałac metoda ładującą dane z bazy danych
 
@@ -103,6 +105,20 @@ namespace SRPH
         private void btn_Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Usunąć pokój?","Question",MessageBoxButton.YesNo,MessageBoxImage.Question)==MessageBoxResult.No)
+            {
+
+            }
+            else
+            {
+                GUI2DB.GUI2DB.DeleteRoom(RoomId);
+                this.Close();
+            }
+
         }
     }
 }

@@ -38,23 +38,13 @@ namespace SRPH
         {
             this.Close();
         }
-
-        private void btn_Reservation_Click(object sender, RoutedEventArgs e)
-        {
-            ReservationWindow AddReservation = new ReservationWindow(0);
-            AddReservation.ShowDialog();
-        }
-        private void btn_Rooms_Click(object sender, RoutedEventArgs e)
-        {
-            RoomWindow AddRoom = new RoomWindow(2);
-            AddRoom.ShowDialog();
-        }
         private void btn_ShowAllReservation_Click(object sender, RoutedEventArgs e)
         {
             var result = GUI2DB.GUI2DB.GetReservations();
             DG_ShowData.ItemsSource = result;
-            //DG_ShowData.Columns[0].Visibility = Visibility.Hidden;
-            //DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
+            DG_ShowData.Columns[0].Visibility = Visibility.Hidden;
+            DG_ShowData.Columns[1].Visibility = Visibility.Hidden;
+            DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
 
         }
 
@@ -62,7 +52,8 @@ namespace SRPH
         {
             var result = GUI2DB.GUI2DB.GetRooms();
             DG_ShowData.ItemsSource = result;
-            //DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
+            DG_ShowData.Columns[0].Visibility = Visibility.Hidden;
+            DG_ShowData.Columns[4].Visibility = Visibility.Hidden;
 
 
         }

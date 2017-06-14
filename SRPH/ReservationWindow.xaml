@@ -24,6 +24,7 @@
         <Label x:Name="lbl_Rooms" Content="Typ pokoju | Nr. " HorizontalAlignment="Left" Margin="57,82,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="CB_FreeRooms" HorizontalAlignment="Left" Margin="160,85,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CB_FreeRooms_SelectionChanged"/>
         <TextBox x:Name="TB_RoomNumber" HorizontalAlignment="Left" Height="23" Margin="294,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57" TabIndex="3" IsEnabled="False"/>
+        <Button x:Name="btn_Delete" Content="Usuń" Margin="14,0,272,15" Click="btn_Delete_Click" TabIndex="7" Height="20" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>
