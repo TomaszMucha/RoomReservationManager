@@ -244,6 +244,20 @@ namespace GUI2DB
 
             }
          }
+        public static bool DoesRoomExist (int roomNum)
+        {
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
+            {
+                var Room = db.Query<Rooms>(x => x.RoomNumber == roomNum);
+                if (Room.Count() == 0)
+                {
+                    return false;
+                }
+                else
+                    return true;
+                
+            }
+        }
 
 
 }
