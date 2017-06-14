@@ -1,5 +1,7 @@
 using System.Windows;
 using System.Drawing;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SRPH
 {
@@ -39,15 +41,11 @@ namespace SRPH
 
         private void btn_Reservation_Click(object sender, RoutedEventArgs e)
         {
-            int index = DG_ShowData.SelectedIndex;
-            var test = DG_ShowData.SelectedCells[0];
-            var res = test.Item;
             ReservationWindow AddReservation = new ReservationWindow(0);
             AddReservation.ShowDialog();
         }
         private void btn_Rooms_Click(object sender, RoutedEventArgs e)
         {
-
             RoomWindow AddRoom = new RoomWindow(2);
             AddRoom.ShowDialog();
         }
@@ -68,5 +66,56 @@ namespace SRPH
 
 
         }
+
+        private void DG_ShowData_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            string Ids = GetSelectedCellValue();
+            if (Ids!=null)
+            {
+                int index = DG_ShowData.SelectedIndex;
+                DG_ShowData.CurrentCell = new System.Windows.Controls.DataGridCellInfo(DG_ShowData.Items[index], DG_ShowData.Columns[0]);
+                DG_ShowData.BeginEdit();
+                var columnName = DG_ShowData.CurrentColumn.Header.ToString();
+
+                int Id = int.Parse(Ids.ToString());
+                if (columnName == "ReservationID")
+                {
+                    ReservationWindow AddReservation = new ReservationWindow(Id);
+                    AddReservation.ShowDialog();
+                }
+                else if (columnName == "RoomId")
+                {
+                    RoomWindow AddRoom = new RoomWindow(Id);
+                    AddRoom.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nie klikaæ po pustym Grid");
+            }
+            
+        }
+        public string GetSelectedCellValue()
+        {
+            try
+            {
+                DataGridCellInfo cellInfo = DG_ShowData.SelectedCells[0];
+                if (cellInfo == null) return null;
+
+                DataGridBoundColumn column = cellInfo.Column as DataGridBoundColumn;
+                if (column == null) return null;
+
+                FrameworkElement element = new FrameworkElement() { DataContext = cellInfo.Item };
+                BindingOperations.SetBinding(element, TagProperty, column.Binding);
+
+                return element.Tag.ToString();
+            }
+            catch (System.Exception)
+            {
+                return null;
+            }
+
+        }
+
     }
 }
