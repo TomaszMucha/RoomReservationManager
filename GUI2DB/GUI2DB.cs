@@ -247,13 +247,18 @@ namespace GUI2DB
             return Reservations.ToList<Reservation>();
 
         }
-        public static void ShowFreeRoom(DateTime TimeStart, DateTime TimeEnd)
+        public static bool IsRoomBooked(DateTime TimeStart, DateTime TimeEnd)
          {
              using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
              {
                 
                 
                 var res = (from Reservation r in db select r).Where(r => r.ReservationDataFrom.CompareTo(TimeStart) > 0 && r.ReservationDataTo.CompareTo(TimeEnd) < 0).ToList();
+                if (res.Count == 0)
+                {
+                    return true;
+                }
+                else return false;
 
 
             }
