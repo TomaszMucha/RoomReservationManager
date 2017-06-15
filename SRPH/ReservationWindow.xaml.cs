@@ -150,6 +150,13 @@ namespace SRPH
             List<string> RoomStandard = new List<string>();
             DateTime DataOd = DatePickerFrom();
             DateTime DataDo = DatePickerTo();
+
+            if (GUI2DB.GUI2DB.IsRoomBooked(DatePickerFrom(), DatePickerTo()))
+            {
+                compatibilityForm = false;
+                MessageBox.Show("Popraw zakres dat, pokój zajęty w tym terminie");
+
+            }
             if (DataOd > DataDo)
             {
                 compatibilityForm = false;

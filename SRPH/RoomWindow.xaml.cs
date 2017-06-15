@@ -80,6 +80,7 @@ namespace SRPH
             return TypeBeds;
         }
 
+
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             //TODO sprawdzenie poprawnosci i zapis do bazy
@@ -115,7 +116,7 @@ namespace SRPH
             }
             else
             {
-                GUI2DB.GUI2DB.DeleteRoom(RoomId);
+                GUI2DB.GUI2DB.DeleteReservation(RoomId);
                 this.Close();
             }
 
