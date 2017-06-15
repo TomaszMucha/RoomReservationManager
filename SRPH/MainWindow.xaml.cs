@@ -108,5 +108,9 @@ namespace SRPH
 
         }
 
+        private void image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Klik³eœ");
+        }
     }
 }
