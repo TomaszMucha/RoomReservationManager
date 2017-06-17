@@ -14,13 +14,13 @@ namespace GUI2DB
     public class GUI2DB
     {
 
-        public static void CreateReservation(int ReservationID,int IdRoom, int IdClient, DateTime DataRezerwacji_Od, DateTime DataRezerwacji_Do, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
+        public static void CreateReservation(int ReservationID,int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
             
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
-                var reservation = new Reservation(ReservationID,IdRoom, DataRezerwacji_Od, DataRezerwacji_Do, RoomStandard, Name, Surename, PESEL, PhoneNumber);
+                var reservation = new Reservation(ReservationID,IdRoom, ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
 
                 db.Store(reservation);
                 db.Commit();
@@ -251,10 +251,11 @@ namespace GUI2DB
          {
              using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
              {
-                
-                
-                var res = (from Reservation r in db select r).Where(r => r.DataRezerwacji_Od.CompareTo(TimeStart) > 0 && r.DataRezerwacji_Do.CompareTo(TimeEnd) < 0).ToList();
-                if (res.Count == 0)
+
+
+                var  res2 = (from Reservation r in db select r).Where(r => r.ReservationDataFrom >= TimeStart && r.ReservationDataTo <= TimeEnd).ToList();
+                var res = (from Reservation r in db select r).Where(r => r.ReservationDataFrom.CompareTo(TimeStart) > 0 && r.ReservationDataTo.CompareTo(TimeEnd) < 0).ToList();
+                if (res2.Count == 0)
                 {
                     return true;
                 }
@@ -267,7 +268,7 @@ namespace GUI2DB
         {
             using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
             {
-                var Room = db.Query<Rooms>(x => x.NumerPokoju == roomNum);
+                var Room = db.Query<Rooms>(x => x.RoomNumber == roomNum);
                 if (Room.Count() == 0)
                 {
                     return false;
