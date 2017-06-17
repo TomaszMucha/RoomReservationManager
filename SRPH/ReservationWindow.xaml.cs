@@ -53,12 +53,12 @@ namespace SRPH
         }
         void FilWindow(SRPH_DataBase.Reservation Reservation)
         {
-            TB_Name.Text = Reservation.Name;
-            TB_SurName.Text = Reservation.Surename;
+            TB_Name.Text = Reservation.Imię;
+            TB_SurName.Text = Reservation.Nazwisko;
             TB_Pesel.Text = Reservation.PESEL;
-            TB_PhoneNumber.Text = Reservation.PhoneNumber.ToString();
-            DP_DateFrom.SelectedDate = Reservation.ReservationDataFrom;
-            DP_DateTo.SelectedDate = Reservation.ReservationDataTo;
+            TB_PhoneNumber.Text = Reservation.NumerTelefonu.ToString();
+            DP_DateFrom.SelectedDate = Reservation.DataRezerwacji_Od;
+            DP_DateTo.SelectedDate = Reservation.DataRezerwacji_Do;
 
         }
         DateTime DatePickerFrom()
@@ -192,7 +192,7 @@ namespace SRPH
 
             foreach (var item in test)
             {
-                CB_FreeRooms.Items.Add(item.TypeOfBeds);
+                CB_FreeRooms.Items.Add(item.TypŁóżek);
             }
         }
 
@@ -201,8 +201,8 @@ namespace SRPH
             var index = CB_FreeRooms.SelectedIndex;
             int room = 0;
             var roomlist = GUI2DB.GUI2DB.GetFreeRooms();
-            room = Int32.Parse(roomlist.ElementAt(index).RoomNumber.ToString());
-            RoomId = Int32.Parse(roomlist.ElementAt(index).RoomNumber.ToString());
+            room = Int32.Parse(roomlist.ElementAt(index).NumerPokoju.ToString());
+            RoomId = Int32.Parse(roomlist.ElementAt(index).NumerPokoju.ToString());
             TB_RoomNumber.Text = room.ToString();
         }
 

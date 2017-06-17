@@ -10,25 +10,25 @@ namespace SRPH_DataBase
     {
         public int ReservationID { get; set; }
         public int IdRoom { get; set; }
-        public DateTime ReservationDataFrom { get; set; }
-        public DateTime ReservationDataTo { get; set; }
+        public DateTime DataRezerwacji_Od { get; set; }
+        public DateTime DataRezerwacji_Do { get; set; }
         public List<string> RoomStandard { get; set; } = new List<string>();
-        public string Name { get; set; }
-        public string Surename { get; set; }
+        public string Imię { get; set; }
+        public string Nazwisko { get; set; }
         public string PESEL { get; set; }
-        public long PhoneNumber { get; set; }
+        public long NumerTelefonu { get; set; }
 
-        public Reservation(int ReservationID, int IdRoom,DateTime ReservationDataFrom, DateTime ReservationDataTo, List<String> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
+        public Reservation(int ReservationID, int IdRoom,DateTime DataRezerwacji_Od, DateTime DataRezerwacji_Do, List<String> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
             this.ReservationID = ReservationID;
             this.IdRoom = IdRoom;
-            this.ReservationDataFrom = ReservationDataFrom;
-            this.ReservationDataTo = ReservationDataTo;
+            this.DataRezerwacji_Od = DataRezerwacji_Od;
+            this.DataRezerwacji_Do = DataRezerwacji_Do;
             this.RoomStandard = RoomStandard;
-            this.Name = Name;
-            this.Surename = Surename;
+            this.Imię = Name;
+            this.Nazwisko = Surename;
             this.PESEL = PESEL;
-            this.PhoneNumber = PhoneNumber;
+            this.NumerTelefonu = PhoneNumber;
 
 
         }

@@ -9,18 +9,18 @@ namespace SRPH_DataBase
     public class Rooms
     {
         public int? RoomId { get; set; }
-        public int? RoomNumber { get; set; }
-        public int? NumberOfPersons { get; set; }
-        public string TypeOfBeds { get; set; }
+        public int? NumerPokoju { get; set; }
+        public int? IlośćOsób { get; set; }
+        public string TypŁóżek { get; set; }
         public bool Booked { get; set; }
 
         public Rooms(int? RoomID,int? RoomNumber, int? NumberOfPersons, string TypeOfBeds)
         {
 
             this.RoomId = RoomID;
-            this.RoomNumber = RoomNumber;
-            this.NumberOfPersons = NumberOfPersons;
-            this.TypeOfBeds = TypeOfBeds;
+            this.NumerPokoju = RoomNumber;
+            this.IlośćOsób = NumberOfPersons;
+            this.TypŁóżek = TypeOfBeds;
             this.Booked = false;
         }
     }

@@ -16,6 +16,7 @@ namespace SRPH
     public partial class RoomWindow : Window
     {
         public int RoomId { get; set; }
+        public int NumbersOfPerson { get; set; }
         public bool compatibilityForm { get; set; }
         public RoomWindow()
         {
@@ -33,9 +34,9 @@ namespace SRPH
 
         void FilWindow(SRPH_DataBase.Rooms Room)
         {
-            TB_Number.Text = Room.RoomNumber.ToString(); ;
-            TB_NumberOfPerson.Text = Room.NumberOfPersons.ToString();
-            TB_TypesOfBeds.Text = Room.TypeOfBeds;
+            TB_Number.Text = Room.NumerPokoju.ToString(); ;
+            TB_NumberOfPerson.Text = Room.IlośćOsób.ToString();
+            TB_TypesOfBeds.Text = Room.TypŁóżek;
         }
 
 
@@ -67,16 +68,22 @@ namespace SRPH
 
             return PersonNumber;
         }
+
         string GetTypeBeds()
         {
             string TypeBeds = TB_TypesOfBeds.Text;
+            var Number=TypeBeds.Split(' ','+');
+            foreach (var item in Number)
+            {
+                NumbersOfPerson+=int.Parse(item);
+            }
             if (TypeBeds == string.Empty)
             {
                 compatibilityForm = false;
                 TB_TypesOfBeds.Foreground = System.Windows.Media.Brushes.Red;
                 MessageBox.Show("Popraw typ łóżek");
             }
-
+            TB_NumberOfPerson.Text = NumbersOfPerson.ToString();
             return TypeBeds;
         }
 
@@ -86,7 +93,7 @@ namespace SRPH
             //TODO sprawdzenie poprawnosci i zapis do bazy
             compatibilityForm = true;
             int NumerPokoju = GetRoomNumber();
-            int IlośćOsób = GetPersonNumber();
+            int IlośćOsób = NumbersOfPerson;
             string TypŁóżek = GetTypeBeds();
             if (compatibilityForm == true)
             {
@@ -95,7 +102,6 @@ namespace SRPH
                 GUI2DB.GUI2DB.AddRooms(GUI2DB.GUI2DB.GetRoomId(), NumerPokoju, IlośćOsób, TypŁóżek);
                 MessageBox.Show("Zapisano!");
                 this.Close();
-
             }
             else
             {
@@ -120,6 +126,23 @@ namespace SRPH
                 this.Close();
             }
 
+        }
+
+        private void TB_TypesOfBeds_TextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void TB_TypesOfBeds_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string TypeBeds = TB_TypesOfBeds.Text;
+            var Number = TypeBeds.Split(' ', '+');
+            foreach (var item in Number)
+            {
+                NumbersOfPerson += int.Parse(item);
+            }
+
+            TB_NumberOfPerson.Text = NumbersOfPerson.ToString();
         }
     }
 }

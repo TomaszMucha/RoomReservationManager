@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         Title="RoomWindow" Height="300" Width="300">
     <Grid>
+        <Image IsEnabled="False" Source="Images/background2.jpg" Stretch="Fill"/>
+
         <TextBox x:Name="TB_Number" HorizontalAlignment="Left" Height="23" Margin="129,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TB_NumberOfPerson" HorizontalAlignment="Left" Height="23" Margin="129,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TB_TypesOfBeds" HorizontalAlignment="Left" Height="23" Margin="129,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TB_NumberOfPerson" HorizontalAlignment="Left" Height="23" Margin="129,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="TB_TypesOfBeds" HorizontalAlignment="Left" Height="23" Margin="129,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextInput="TB_TypesOfBeds_TextInput" LostFocus="TB_TypesOfBeds_LostFocus"/>
         <Label x:Name="lbl_Number" Content="Numer Pokoju" HorizontalAlignment="Left" Margin="26,48,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_NumberOfPerson" Content="Ilość Osób" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lbl_TypesOfBeds" Content="Typ łóżek" HorizontalAlignment="Left" Margin="26,139,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lbl_NumberOfPerson" Content="Ilość Osób" HorizontalAlignment="Left" Margin="26,148,0,0" VerticalAlignment="Top" Width="74"/>
+        <Label x:Name="lbl_TypesOfBeds" Content="Typ łóżek" HorizontalAlignment="Left" Margin="26,92,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btn_Close" Content="Zamknij" HorizontalAlignment="Left" Margin="211,239,0,0" VerticalAlignment="Top" Width="75" Click="btn_Close_Click"/>
         <Button x:Name="btn_Save" Content="Zapisz" HorizontalAlignment="Left" Margin="110,239,0,0" VerticalAlignment="Top" Width="75" Click="btn_Save_Click"/>
         <Button x:Name="btn_Delete" Content="Usuń" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="75" Click="btn_Delete_Click"/>
