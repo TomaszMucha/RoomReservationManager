@@ -254,8 +254,7 @@ namespace GUI2DB
 
 
                 var  res2 = (from Reservation r in db select r).Where(r => r.DataRezerwacji_Od >= TimeStart && r.DataRezerwacji_Do <= TimeEnd).ToList();
-                var res = (from Reservation r in db select r).Where(r => r.DataRezerwacji_Od.CompareTo(TimeStart) > 0 && r.DataRezerwacji_Do.CompareTo(TimeEnd) < 0).ToList();
-                if (res2.Count == 0)
+                if (res2.Count != 0)
                 {
                     return true;
                 }
