@@ -16,7 +16,7 @@
         <Button x:Name="btn_ShowAllReservation" Content="Pokaż wszystkie rezerwacje" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="154" Click="btn_ShowAllReservation_Click"/>
         <DataGrid x:Name="DG_ShowData" Margin="194,63,10,10" MouseDoubleClick="DG_ShowData_MouseDoubleClick"/>
         <Button x:Name="btn_ShowAllRooms" Content="Pokaż wszystkie pokoje" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.456,2.426" Click="btn_ShowAllRooms_Click" Height="18"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="26" Margin="10,96,0,0" VerticalAlignment="Top" Width="29" MouseLeftButtonUp="image_MouseLeftButtonUp" Source="Images/icon.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="26" Margin="10,96,0,0" VerticalAlignment="Top" Width="29" MouseLeftButtonUp="image_MouseLeftButtonUp" Source="Images/icon.png" AutomationProperties.Name="Test Hint"/>
 
     </Grid>
 </Window>
