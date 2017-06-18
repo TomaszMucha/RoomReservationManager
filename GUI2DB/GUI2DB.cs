@@ -104,7 +104,7 @@ namespace GUI2DB
         }
         public static int GetReservationId()
         {
-            int back = 0;
+            //int back = 0;
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
