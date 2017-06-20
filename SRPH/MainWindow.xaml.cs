@@ -112,5 +112,11 @@ namespace SRPH
         {
             MessageBox.Show("Klik³eœ");
         }
+
+        private void btn_Settings_Click(object sender, RoutedEventArgs e)
+        {
+            Settings window = new Settings();
+            window.ShowDialog();
+        }
     }
 }

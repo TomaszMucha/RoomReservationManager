@@ -1,0 +1,35 @@
+﻿<Window x:Class="SRPH.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SRPH"
+        mc:Ignorable="d"
+        Title="Settings" Height="300" Width="300">
+    <Grid>
+        <TabControl x:Name="tabControl">
+            <TabItem x:Name="Tb_permanently" Header="Stałe">
+                <Grid Background="#FFE5E5E5">
+                    <StackPanel Width="250" Height="80">
+                        <ListBox Name="listBoxZone" ItemsSource="{Binding TheList}"
+ Height="115" Background="Azure">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="CheckBoxZone" Content="{Binding TheText}"
+     Tag="{Binding TheValue}" Checked="CheckBoxZone_Checked"  
+     Margin="0,5,0,0"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <TextBox Name="ZoneText" Width="160" Height="20" Margin="-80,140,0,0" Background="Bisque" />
+                    <TextBox Name="ZoneValue" Width="160" Height="20" Margin="-80,190,0,0" Background="Bisque" />
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TI_moving" Header="ruchome">
+                <Grid Background="#FFE5E5E5" Grid.IsSharedSizeScope="True" Margin="0,0,-2,0"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
