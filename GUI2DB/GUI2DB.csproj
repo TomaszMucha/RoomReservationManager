@@ -64,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PaymentsSaver\PaymentsSaver.csproj">
+      <Project>{97cb113e-d33b-41d0-87e4-f59379f75206}</Project>
+      <Name>PaymentsSaver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SRPH-DataBase\SRPH-DataBase.csproj">
       <Project>{ddbad3f1-cd89-472d-a99e-836f7002863c}</Project>
       <Name>SRPH-DataBase</Name>

@@ -244,7 +244,7 @@ namespace GUI2DB
             List<Rooms> RoomList;
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
-                Reservations = (from Reservation r in db select r).ToList().Where(r=>r.DataRezerwacji_Od>=startTime && r.DataRezerwacji_Do<=endTime).ToList();
+                Reservations = (from Reservation r in db select r).ToList().Where(r=>!(r.DataRezerwacji_Od>=startTime && r.DataRezerwacji_Do<=endTime)).ToList();
                 RoomList = (from Rooms r in db select r).ToList();
             }
 
@@ -262,10 +262,41 @@ namespace GUI2DB
             }
 
             return RoomByNumber;
-
         }
 
+        public static void StoreStandardList(List<PaymentsSaver> bsc)
+        {
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
 
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+            {
+                db.Store(bsc);
+            }
+        }
+
+        public static List<PaymentsSaver> ReceiveStandardList()
+        {
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+            List<PaymentsSaver> ps;
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+            {
+                ps = (from PaymentsSaver p in db select p).ToList();
+            }
+            return ps;
+        }
 
         public static List<Reservation> GetReservations()
         {
