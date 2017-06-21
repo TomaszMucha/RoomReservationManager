@@ -42,11 +42,16 @@ namespace SRPH
             this.DataContext = this;
         }
 
-
-
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chkZone = (CheckBox)sender;
+            foreach (var item in TheList)
+            {
+                if (item.TheText == chkZone.Content.ToString())
+                {
+                    MessageBox.Show(item.TheValue.ToString());
+                }
+            }
             ZoneText.Text = "Selected Zone Name= " + chkZone.Content.ToString();
             ZoneValue.Text = "Selected Zone Value= " + chkZone.Tag.ToString();
         }
