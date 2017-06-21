@@ -10,7 +10,20 @@
         <TabControl x:Name="tabControl">
             <TabItem x:Name="Tb_permanently" Header="Stałe">
                 <Grid Background="#FFE5E5E5">
-                    <StackPanel Width="250" Height="80"/>
+                    <StackPanel Width="250" Height="80">
+                        <ListBox Name="listBoxZone" ItemsSource="{Binding TheList}"
+ Height="115" Background="Azure">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="CheckBoxZone" Content="{Binding TheText}"
+     Tag="{Binding TheValue}" Checked="CheckBoxZone_Checked"  
+     Margin="0,5,0,0"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <TextBox Name="ZoneText" Width="160" Height="20" Margin="-80,140,0,0" Background="Bisque" />
+                    <TextBox Name="ZoneValue" Width="160" Height="20" Margin="-80,190,0,0" Background="Bisque" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TI_moving" Header="ruchome">
