@@ -46,7 +46,9 @@
       <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Mono.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Expressions">
+      <HintPath>..\..\..\..\..\Desktop\Db40\db4o-8.0\bin\compact-3.5\System.Linq.Expressions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
