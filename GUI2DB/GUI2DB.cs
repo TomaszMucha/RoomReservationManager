@@ -229,7 +229,7 @@ namespace GUI2DB
 
         }
 
-        public static List<Reservation> GetReservationByDate(DateTime startTime, DateTime endTime)
+        public static List<int?> GetReservationByDate(DateTime startTime, DateTime endTime)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
 
@@ -241,14 +241,31 @@ namespace GUI2DB
 
 
             List<Reservation> Reservations;
+            List<Rooms> RoomList;
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
                 Reservations = (from Reservation r in db select r).ToList().Where(r=>r.DataRezerwacji_Od>=startTime && r.DataRezerwacji_Do<=endTime).ToList();
+                RoomList = (from Rooms r in db select r).ToList();
             }
 
-            return Reservations.ToList<Reservation>();
+            List<int?> RoomByNumber = new List<int?>();
+
+            foreach (var Reservation in Reservations)
+            {
+                foreach (var Room in RoomList)
+                {
+                    if (Reservation.IdRoom==Room.RoomId)
+                    {
+                        RoomByNumber.Add(Room.NumerPokoju);
+                    }
+                }
+            }
+
+            return RoomByNumber;
 
         }
+
+
 
         public static List<Reservation> GetReservations()
         {
@@ -273,7 +290,7 @@ namespace GUI2DB
          {
              using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
              {
-                var  res2 = (from Reservation r in db select r).Where(r => r.DataRezerwacji_Od >= TimeStart && r.DataRezerwacji_Do <= TimeEnd).ToList();
+                List<Reservation>  res2 = (from Reservation r in db select r).ToList().Where(r => r.DataRezerwacji_Od >= TimeStart && r.DataRezerwacji_Do <= TimeEnd).ToList();
                 if (res2.Count != 0)
                 {
                     return true;
