@@ -115,7 +115,7 @@ namespace SRPH
 
         private void btn_Settings_Click(object sender, RoutedEventArgs e)
         {
-            Settings window = new Settings();
+            Standards window = new Standards();
             window.ShowDialog();
         }
     }
