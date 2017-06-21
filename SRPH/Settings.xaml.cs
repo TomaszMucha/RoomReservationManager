@@ -42,8 +42,6 @@ namespace SRPH
             this.DataContext = this;
         }
 
-
-
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chkZone = (CheckBox)sender;

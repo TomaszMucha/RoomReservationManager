@@ -228,6 +228,28 @@ namespace GUI2DB
             return Rooms.ToList<Rooms>();
 
         }
+
+        public static List<Reservation> GetReservationByDate(DateTime startTime, DateTime endTime)
+        {
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
+
+
+            List<Reservation> Reservations;
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+            {
+                Reservations = (from Reservation r in db select r).ToList().Where(r=>r.DataRezerwacji_Od>=startTime && r.DataRezerwacji_Do<=endTime).ToList();
+            }
+
+            return Reservations.ToList<Reservation>();
+
+        }
+
         public static List<Reservation> GetReservations()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
@@ -251,16 +273,12 @@ namespace GUI2DB
          {
              using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
              {
-
-
                 var  res2 = (from Reservation r in db select r).Where(r => r.DataRezerwacji_Od >= TimeStart && r.DataRezerwacji_Do <= TimeEnd).ToList();
                 if (res2.Count != 0)
                 {
                     return true;
                 }
                 else return false;
-
-
             }
          }
         public static bool DoesRoomExist (int roomNum)
@@ -277,9 +295,7 @@ namespace GUI2DB
                 
             }
         }
-
-
-}
+    }
 }
 
 
