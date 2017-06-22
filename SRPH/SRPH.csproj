@@ -68,6 +68,9 @@
     <Compile Include="RoomWindow.xaml.cs">
       <DependentUpon>RoomWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Standards.xaml.cs">
       <DependentUpon>Standards.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RoomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +134,10 @@
     <ProjectReference Include="..\GUI2DB\GUI2DB.csproj">
       <Project>{1c616109-7977-47bc-8cb5-167dbf5f7706}</Project>
       <Name>GUI2DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PaymentsSaver\PaymentsSaver.csproj">
+      <Project>{97cb113e-d33b-41d0-87e4-f59379f75206}</Project>
+      <Name>PaymentsSaver</Name>
     </ProjectReference>
     <ProjectReference Include="..\SRPH-DataBase\SRPH-DataBase.csproj">
       <Project>{DDBAD3F1-CD89-472D-A99E-836F7002863C}</Project>

@@ -26,8 +26,8 @@
                     <TextBox Name="ZoneValue" Width="160" Height="20" Margin="-80,190,0,0" Background="Bisque" />
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TI_moving" Header="ruchome">
-                <Grid Background="#FFE5E5E5" Grid.IsSharedSizeScope="True" Margin="0,0,-2,0"/>
+            <TabItem x:Name="TI_moving" Header="Ruchome">
+                <Grid Background="#FFE5E5E5" Grid.IsSharedSizeScope="True" Margin="0"/>
             </TabItem>
         </TabControl>
 

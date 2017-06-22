@@ -1,4 +1,4 @@
-﻿<Window x:Class="SRPH.Standards"
+﻿<Window x:Class="SRPH.Settings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,16 +7,55 @@
         mc:Ignorable="d"
         Title="Settings" Height="300" Width="300">
     <Grid>
-        <TabControl x:Name="tabControl">
-            <TabItem x:Name="Tb_permanently" Header="Stałe">
-                <Grid Background="#FFE5E5E5">
-                    <StackPanel Width="250" Height="80"/>
+        <TabControl x:Name="T">
+            <TabItem x:Name="TI_Pernament" Header="Stałe">
+                <Grid Background="#FFE5E5E5" Margin="0">
+                    <TextBox x:Name="txt_Name" HorizontalAlignment="Left" Height="23" Margin="89,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txt_Price" Height="23" Margin="231,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45"/>
+                    <Button x:Name="btn_Add" Content="Dodaj" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75" Click="btn_Add_Click"/>
+                    <Button x:Name="btn_Save" Content="Zapisz" Margin="0,0,10,10" Click="btn_Save_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+                    <Label x:Name="lbl_Name" Content="Nazwa Standardu" HorizontalAlignment="Left" Margin="89,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.072,-0.241" Width="120"/>
+                    <Label x:Name="lbl_Price" Content="Cena" HorizontalAlignment="Left" Margin="231,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.072,-0.241" Width="45"/>
+                    <ListView x:Name="LV_Standards" DataContext="TheList" Margin="10,83,10,53"
+                        ItemsSource="{Binding Rows}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="140" Header="First Name"
+                                    DisplayMemberBinding="{Binding StandardName}"  />
+                                <GridViewColumn Width="140" Header="Last Name"  
+                                    DisplayMemberBinding="{Binding StandardPrice}" />
+                                <GridViewColumn Width="140" Header="Email Address"
+                                    DisplayMemberBinding="{Binding TypeName}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TI_moving" Header="ruchome">
-                <Grid Background="#FFE5E5E5" Grid.IsSharedSizeScope="True" Margin="0,0,-2,0"/>
+            <TabItem x:Name="TI_Moveable" Header="Ruchome">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="txt_Name2" HorizontalAlignment="Left" Height="23" Margin="89,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txt_Price2" HorizontalAlignment="Left" Height="23" Margin="231,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45"/>
+                    <Button x:Name="btn_Add2" Content="Dodaj" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75" Click="btn_Add2_Click"/>
+                    <Button x:Name="btn_Save_Copy" Content="Zapisz" Margin="0,0,10,10" Click="btn_Save_Click" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom"/>
+                    <Label x:Name="lbl_Name_Copy" Content="Nazwa Standardu" HorizontalAlignment="Left" Margin="89,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.072,-0.241" Width="120"/>
+                    <Label x:Name="lbl_Price_Copy" Content="Cena" HorizontalAlignment="Left" Margin="231,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.072,-0.241" Width="45"/>
+                    <ListView x:Name="LV_Standards2" DataContext="TheList" Margin="10,83,10,53"
+                         ItemsSource="{Binding Rows}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="140" Header="Nazwa"
+         DisplayMemberBinding="{Binding StandardName}"  />
+                                <GridViewColumn Width="140" Header="Cena"  
+         DisplayMemberBinding="{Binding StandardPrice}" />
+                                <GridViewColumn Width="140" Header="Typ"
+         DisplayMemberBinding="{Binding TypeName}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

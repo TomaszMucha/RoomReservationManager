@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SRPH_DataBase;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,20 +21,66 @@ namespace SRPH
     /// </summary>
     public partial class Settings : Window
     {
-        public ObservableCollection<BoolStringClass> TheList { get; set; }
+        public ObservableCollection<BoolStringClass> Rows { get; set; }
+
+        List<BoolStringClass> TheList = new List<BoolStringClass>();
 
         public Settings()
         {
             InitializeComponent();
+            Rows = new ObservableCollection<BoolStringClass>();
+
         }
-        public class BoolStringClass
+
+        private void btn_Add_Click(object sender, RoutedEventArgs e)
         {
-            public string TheText { get; set; }
-            public int TheValue { get; set; }
+            int price;
+            if (int.TryParse(txt_Price.Text, out price) == true && string.IsNullOrEmpty(txt_Name.Text) != true)
+            {
+                TheList.Add(new BoolStringClass { StandardName = txt_Name.Text, StandardPrice = price, TypeName = "P" });
+            }
+            else
+            {
+                MessageBox.Show("Podane wartości sa błędne");
+            }
+            if (LV_Standards.Items.Count != 0)
+            {
+                LV_Standards.Items.Clear();
+            }
+            foreach (var item in TheList)
+            {
+                this.LV_Standards.Items.Add(item);
+
+            }
+
         }
 
+        private void btn_Save_Click(object sender, RoutedEventArgs e)
+        {
+            GUI2DB.GUI2DB.StoreStandardList(TheList);
+        }
 
+        private void btn_Add2_Click(object sender, RoutedEventArgs e)
+        {
+            int price;
+            if (int.TryParse(txt_Price2.Text, out price) == true && string.IsNullOrEmpty(txt_Name2.Text) != true)
+            {
+                TheList.Add(new BoolStringClass { StandardName = txt_Name2.Text, StandardPrice = price, TypeName = "M" });
+            }
+            else
+            {
+                MessageBox.Show("Podane wartości sa błędne");
+            }
+            if (LV_Standards2.Items.Count!=0)
+            {
+                LV_Standards2.Items.Clear();
+            }
+            foreach (var item in TheList)
+            {
+                this.LV_Standards2.Items.Add(item);
+
+            }
+
+        }
     }
-
 }
-

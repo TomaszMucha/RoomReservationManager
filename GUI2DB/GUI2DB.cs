@@ -264,7 +264,7 @@ namespace GUI2DB
             return RoomByNumber;
         }
 
-        public static void StoreStandardList(List<PaymentsSaver> bsc)
+        public static void StoreStandardList(List<BoolStringClass> bsc)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
 
@@ -280,7 +280,7 @@ namespace GUI2DB
             }
         }
 
-        public static List<PaymentsSaver> ReceiveStandardList()
+        public static List<BoolStringClass> ReceiveStandardList()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
 
@@ -290,10 +290,10 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnDelete(true);
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
-            List<PaymentsSaver> ps;
+            List<BoolStringClass> ps;
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
-                ps = (from PaymentsSaver p in db select p).ToList();
+                ps = (from BoolStringClass p in db select p).ToList();
             }
             return ps;
         }

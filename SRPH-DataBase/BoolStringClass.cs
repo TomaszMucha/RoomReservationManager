@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace SRPH_DataBase
 {
-    class BoolStringClass
+    public class BoolStringClass
     {
         public string StandardName { get; set; }
         public int StandardPrice { get; set; }
+        public string TypeName { get; set; }
+
     }
 }
