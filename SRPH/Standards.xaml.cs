@@ -46,9 +46,9 @@ namespace SRPH
             CheckBox chkZone = (CheckBox)sender;
             foreach (var item in TheList)
             {
-                if (item.StandardName == chkZone.Content.ToString())
+                if (item.TheText == chkZone.Content.ToString())
                 {
-                    MessageBox.Show(item.StandardName.ToString());
+                    MessageBox.Show(item.TheText.ToString());
                 }
             }
             ZoneText.Text = "Selected Zone Name= " + chkZone.Content.ToString();
@@ -57,4 +57,4 @@ namespace SRPH
     }
 
 }
-
+  
