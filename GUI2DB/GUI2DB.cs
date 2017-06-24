@@ -14,23 +14,23 @@ namespace GUI2DB
     public class GUI2DB
     {
 
-        public static void CreateReservation(int ReservationID,int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
+        public static void CreateReservation(int ReservationID, int IdRoom, int IdClient, DateTime ReservationDataFrom, DateTime ReservationDataTo, List<string> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            
+
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
-                var reservation = new Reservation(ReservationID,IdRoom, ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
+                var reservation = new Reservation(ReservationID, IdRoom, ReservationDataFrom, ReservationDataTo, RoomStandard, Name, Surename, PESEL, PhoneNumber);
 
                 db.Store(reservation);
                 db.Commit();
                 db.Close();
             }
 
-            
+
         }
         public static void AddRooms(int roomID, int RoomNum, int Persons, string Beds)
-            
+
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
             //IObjectContainer db;
@@ -50,13 +50,13 @@ namespace GUI2DB
                 db.Commit();
                 db.Close();
             }
-            
+
 
         }
         public static Reservation GetReservation(int ResNumber)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-           // IObjectContainer db;
+            // IObjectContainer db;
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnUpdate(true);
@@ -70,7 +70,7 @@ namespace GUI2DB
                 Reservation Reserv = results.First();
                 return Reserv;
             }
-            
+
             //jak jest puste to się wywala, trzeba to jakoś obudować
             //try catch łapiesz i wywalasz komuniakt ex brak rezerwacji o danym idp-
 
@@ -84,15 +84,15 @@ namespace GUI2DB
 
                 int IdNumber = 1;
 
-                if (result.Count!=0)
+                if (result.Count != 0)
                 {
                     foreach (var item in result)
                     {
-                        if (item.RoomId==IdNumber)
+                        if (item.RoomId == IdNumber)
                         {
-                            IdNumber = (int)item.RoomId+1;
+                            IdNumber = (int)item.RoomId + 1;
                         }
-                    
+
                     }
                 }
                 else
@@ -133,29 +133,29 @@ namespace GUI2DB
         public static IEnumerable<Rooms> GetFreeRooms()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-                 
+
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
                 //var Room = db.Query<Rooms>(x => x.Booked == false);
-                var Room = (from Rooms r in db select r).ToList().Where(r=>r.Booked==false);
+                var Room = (from Rooms r in db select r).ToList().Where(r => r.Booked == false);
                 // test var x = (from Rooms r in db where r.Booked == false select r).ToList();
                 return Room;
             }
-     
-            
+
+
 
         }
         public static void DeleteRoom(int roomID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
-            
+
             IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
 
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnUpdate(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnDelete(true);
             config.Common.ObjectClass(typeof(Rooms)).CascadeOnActivate(true);
 
-            
+
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
                 var result = db.Query<Rooms>(x => x.RoomId == roomID);
@@ -164,10 +164,10 @@ namespace GUI2DB
                 db.Commit();
                 db.Close();
             }
-            
+
 
         }
-        public static void DeleteReservation (int ResID)
+        public static void DeleteReservation(int ResID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
             //IObjectContainer db;
@@ -185,14 +185,14 @@ namespace GUI2DB
                 db.Close();
             }
 
-           // db = Db4oEmbedded.OpenFile(config, path);
-           
+            // db = Db4oEmbedded.OpenFile(config, path);
+
         }
         public static Rooms GetRoom(int ID)
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
 
-            
+
             using (IObjectContainer db = Db4oEmbedded.OpenFile(path))
             {
                 var Room = db.Query<Rooms>(x => x.RoomId == ID);
@@ -204,13 +204,13 @@ namespace GUI2DB
                     throw new Exception("Ogarnij se to");
 
             }
-            
 
-           
+
+
 
         }
         //TODO dodac metodę getRoom dającą dane pokoju po ID do edycji
-        public static IList<Rooms> GetRooms ()
+        public static IList<Rooms> GetRooms()
         {
             string path = Directory.GetCurrentDirectory() + "\\database.srph";
 
@@ -244,7 +244,7 @@ namespace GUI2DB
             List<Rooms> RoomList;
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
-                Reservations = (from Reservation r in db select r).ToList().Where(r=>!(r.DataRezerwacji_Od>=startTime && r.DataRezerwacji_Do<=endTime)).ToList();
+                Reservations = (from Reservation r in db select r).ToList().Where(r => !(r.DataRezerwacji_Od >= startTime && r.DataRezerwacji_Do <= endTime)).ToList();
                 RoomList = (from Rooms r in db select r).ToList();
             }
 
@@ -254,7 +254,7 @@ namespace GUI2DB
             {
                 foreach (var Room in RoomList)
                 {
-                    if (Reservation.IdRoom==Room.RoomId)
+                    if (Reservation.IdRoom == Room.RoomId)
                     {
                         RoomByNumber.Add(Room.NumerPokoju);
                     }
@@ -309,7 +309,7 @@ namespace GUI2DB
             config.Common.ObjectClass(typeof(Reservation)).CascadeOnActivate(true);
 
 
-            List<Reservation> Reservations; 
+            List<Reservation> Reservations;
             using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
             {
                 Reservations = (from Reservation r in db select r).ToList();
@@ -318,18 +318,18 @@ namespace GUI2DB
 
         }
         public static bool IsRoomBooked(DateTime TimeStart, DateTime TimeEnd)
-         {
-             using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
-             {
-                List<Reservation>  res2 = (from Reservation r in db select r).ToList().Where(r => r.DataRezerwacji_Od >= TimeStart && r.DataRezerwacji_Do <= TimeEnd).ToList();
+        {
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
+            {
+                List<Reservation> res2 = (from Reservation r in db select r).ToList().Where(r => r.DataRezerwacji_Od >= TimeStart && r.DataRezerwacji_Do <= TimeEnd).ToList();
                 if (res2.Count != 0)
                 {
                     return true;
                 }
                 else return false;
             }
-         }
-        public static bool DoesRoomExist (int roomNum)
+        }
+        public static bool DoesRoomExist(int roomNum)
         {
             using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
             {
@@ -340,7 +340,7 @@ namespace GUI2DB
                 }
                 else
                     return true;
-                
+
             }
         }
 
@@ -348,10 +348,22 @@ namespace GUI2DB
         {
             using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
             {
-                List<BoolStringClass> PermanentStandart = (from BoolStringClass b select )
-
+                List<BoolStringClass> PermanentStandart = (from BoolStringClass b in db where b.IsPermamentOrIsNotPermament == true select b).ToList();
+                return PermanentStandart;
             }
+
         }
+
+        public static List<BoolStringClass> GetNotPermanentStandard()
+        {
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
+            {
+                List<BoolStringClass> PermanentStandart = (from BoolStringClass b in db where b.IsPermamentOrIsNotPermament != true select b).ToList();
+                return PermanentStandart;
+            }
+
+        }
+    }
 }
 
 
