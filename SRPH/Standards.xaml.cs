@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SRPH_DataBase;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -27,18 +28,16 @@ namespace SRPH
             InitializeComponent();
             CreateCheckBoxList();
         }
-        public class BoolStringClass
-        {
-            public string TheText { get; set; }
-            public int TheValue { get; set; }
-        }
+
         public void CreateCheckBoxList()
         {
             TheList = new ObservableCollection<BoolStringClass>();
-            TheList.Add(new BoolStringClass { TheText = "EAST", TheValue = 1 });
-            TheList.Add(new BoolStringClass { TheText = "WEST", TheValue = 2 });
-            TheList.Add(new BoolStringClass { TheText = "NORTH", TheValue = 3 });
-            TheList.Add(new BoolStringClass { TheText = "SOUTH", TheValue = 4 });
+            var List = GUI2DB.GUI2DB.ReceiveStandardList();
+            foreach (var item in List)
+            {
+                TheList.Add(item);
+            }
+
             this.DataContext = this;
         }
 
@@ -47,9 +46,9 @@ namespace SRPH
             CheckBox chkZone = (CheckBox)sender;
             foreach (var item in TheList)
             {
-                if (item.TheText == chkZone.Content.ToString())
+                if (item.StandardName == chkZone.Content.ToString())
                 {
-                    MessageBox.Show(item.TheValue.ToString());
+                    MessageBox.Show(item.StandardName.ToString());
                 }
             }
             ZoneText.Text = "Selected Zone Name= " + chkZone.Content.ToString();
