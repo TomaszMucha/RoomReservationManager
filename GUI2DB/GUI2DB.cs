@@ -343,7 +343,15 @@ namespace GUI2DB
                 
             }
         }
-    }
+
+        public static List<BoolStringClass> GetPermanentStandard()
+        {
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(Directory.GetCurrentDirectory() + "\\database.srph"))
+            {
+                List<BoolStringClass> PermanentStandart = (from BoolStringClass b select )
+
+            }
+        }
 }
 
 
