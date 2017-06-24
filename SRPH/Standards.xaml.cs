@@ -32,7 +32,7 @@ namespace SRPH
         public void CreateCheckBoxList()
         {
             TheList = new ObservableCollection<BoolStringClass>();
-            var List = GUI2DB.GUI2DB.ReceiveStandardList();
+            var List = GUI2DB.GUI2DB.GetPermanentStandard();
             foreach (var item in List)
             {
                 TheList.Add(item);
@@ -46,9 +46,9 @@ namespace SRPH
             CheckBox chkZone = (CheckBox)sender;
             foreach (var item in TheList)
             {
-                if (item.TheText == chkZone.Content.ToString())
+                if (item.StandardName == chkZone.Content.ToString())
                 {
-                    MessageBox.Show(item.TheText.ToString());
+                    MessageBox.Show(item.StandardName.ToString());
                 }
             }
             ZoneText.Text = "Selected Zone Name= " + chkZone.Content.ToString();
