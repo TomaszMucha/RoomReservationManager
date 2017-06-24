@@ -37,7 +37,7 @@ namespace SRPH
             int price;
             if (int.TryParse(txt_Price.Text, out price) == true && string.IsNullOrEmpty(txt_Name.Text) != true)
             {
-                TheList.Add(new BoolStringClass { StandardName = txt_Name.Text, StandardPrice = price, TypeName = "P" });
+                TheList.Add(new BoolStringClass { StandardName = txt_Name.Text, StandardPrice = price, IsPermamentOrIsNotPermament = true });
             }
             else
             {
@@ -65,7 +65,7 @@ namespace SRPH
             int price;
             if (int.TryParse(txt_Price2.Text, out price) == true && string.IsNullOrEmpty(txt_Name2.Text) != true)
             {
-                TheList.Add(new BoolStringClass { StandardName = txt_Name2.Text, StandardPrice = price, TypeName = "M" });
+                TheList.Add(new BoolStringClass { StandardName = txt_Name2.Text, StandardPrice = price, IsPermamentOrIsNotPermament = false });
             }
             else
             {
