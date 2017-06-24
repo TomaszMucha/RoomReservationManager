@@ -17,8 +17,9 @@ namespace SRPH_DataBase
         public string Nazwisko { get; set; }
         public string PESEL { get; set; }
         public long NumerTelefonu { get; set; }
+        public List<BoolStringClass> BoolStringClassList { get; set; }
 
-        public Reservation(int ReservationID, int IdRoom,DateTime DataRezerwacji_Od, DateTime DataRezerwacji_Do, List<String> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
+        public Reservation(int ReservationID, int IdRoom, DateTime DataRezerwacji_Od, DateTime DataRezerwacji_Do, List<String> RoomStandard, string Name, string Surename, string PESEL, long PhoneNumber)
         {
             this.ReservationID = ReservationID;
             this.IdRoom = IdRoom;
@@ -29,8 +30,7 @@ namespace SRPH_DataBase
             this.Nazwisko = Surename;
             this.PESEL = PESEL;
             this.NumerTelefonu = PhoneNumber;
-
-
+            this.BoolStringClassList = new List<BoolStringClass>();
         }
     }
 }

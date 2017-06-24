@@ -13,6 +13,7 @@ namespace SRPH_DataBase
         public int? IlośćOsób { get; set; }
         public string TypŁóżek { get; set; }
         public bool Booked { get; set; }
+        public List<BoolStringClass> BoolStringClassList { get; set; }
 
         public Rooms(int? RoomID,int? RoomNumber, int? NumberOfPersons, string TypeOfBeds)
         {
@@ -22,6 +23,7 @@ namespace SRPH_DataBase
             this.IlośćOsób = NumberOfPersons;
             this.TypŁóżek = TypeOfBeds;
             this.Booked = false;
+            this.BoolStringClassList = new List<BoolStringClass>();
         }
     }
 }

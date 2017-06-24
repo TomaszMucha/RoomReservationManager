@@ -8,9 +8,8 @@ namespace SRPH_DataBase
 {
     public class BoolStringClass
     {
-        public string StandardName { get; set; }
-        public int StandardPrice { get; set; }
-        public string TypeName { get; set; }
-
+        public string TheText { get; set; }
+        public int TheValue { get; set; }
+        public bool IsPermamentOrIsNotPermament { get; set; }
     }
 }
