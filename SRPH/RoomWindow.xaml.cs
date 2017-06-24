@@ -51,6 +51,12 @@ namespace SRPH
                 TB_Number.Foreground = System.Windows.Media.Brushes.Red;
                 MessageBox.Show("Popraw numej pokoju");
             }
+            if (GUI2DB.GUI2DB.DoesRoomExist(RoomNumber)==true)
+            {
+                compatibilityForm = false;
+                TB_Number.Foreground = System.Windows.Media.Brushes.Red;
+                MessageBox.Show("Dany pokój już jest");
+            }
 
             return RoomNumber;
         }
