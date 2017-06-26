@@ -150,5 +150,11 @@ namespace SRPH
 
             TB_NumberOfPerson.Text = NumbersOfPerson.ToString();
         }
+
+        private void btn_Standard_Click(object sender, RoutedEventArgs e)
+        {
+            Standards window = new Standards(true);
+            window.ShowDialog();
+        }
     }
 }
