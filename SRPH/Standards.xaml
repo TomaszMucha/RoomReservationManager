@@ -5,23 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SRPH"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="300">
-    <Grid>
-        <TabControl x:Name="tabControl">
-            <TabItem x:Name="Tb_permanently" Header="Stałe">
-                <Grid Background="#FFE5E5E5">
+        Title="Standardy" Height="300" Width="300">
+                <Grid>
+                    <StackPanel Width="250" Height="200">
+            <ListBox x:Name="listBoxZone" ItemsSource="{Binding TheList}"
+                                Width="240" Height="200" Background="Azure">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox x:Name="CheckBoxZone" Content="{Binding StandardName}"
+                                         Tag="{Binding StandardPrice}" Checked="CheckBoxZone_Checked"  
+                                         Margin="0,5,0,0"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
                     <TextBox Name="ZoneText" Width="160" Height="20" Margin="-80,140,0,0" Background="Bisque" />
-                    <TextBox Name="ZoneValue" Width="160" Height="20" Margin="-80,190,0,0" Background="Bisque" />
-                    <ListBox x:Name="listBoxZone"
- Background="Azure" Margin="10,26,26,100">
-                        <StackPanel Width="250" Height="80"/>
-                    </ListBox>
+                    <TextBox Name="ZoneValue" Width="160" Height="20" Margin="21,235,111,14" Background="Bisque" />
                 </Grid>
-            </TabItem>
-            <TabItem x:Name="TI_moving" Header="Ruchome">
-                <Grid Background="#FFE5E5E5" Grid.IsSharedSizeScope="True" Margin="0"/>
-            </TabItem>
-        </TabControl>
 
-    </Grid>
 </Window>

@@ -37,8 +37,8 @@ namespace SRPH
             int price;
             if (int.TryParse(txt_Price.Text, out price) == true && string.IsNullOrEmpty(txt_Name.Text) != true)
             {
-                TheList.Add(new BoolStringClass(txt_Name.Text, price, true)); //{ StandardName = txt_Name.Text, StandardPrice = price, IsPermamentOrIsNotPermament = true });
-            }//
+                TheList.Add(new BoolStringClass { StandardName = txt_Name.Text, StandardPrice = price, IsPermamentOrIsNotPermament = true });
+            }
             else
             {
                 MessageBox.Show("Podane wartości sa błędne");
@@ -58,6 +58,8 @@ namespace SRPH
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             GUI2DB.GUI2DB.StoreStandardList(TheList);
+            TheList.Clear();
+            MessageBox.Show("Zapisano");
         }
 
         private void btn_Add2_Click(object sender, RoutedEventArgs e)
@@ -65,8 +67,8 @@ namespace SRPH
             int price;
             if (int.TryParse(txt_Price2.Text, out price) == true && string.IsNullOrEmpty(txt_Name2.Text) != true)
             {
-                TheList.Add(new BoolStringClass(txt_Name.Text, price, false));//{ StandardName = txt_Name2.Text, StandardPrice = price, IsPermamentOrIsNotPermament = false });
-            }//
+                TheList.Add(new BoolStringClass { StandardName = txt_Name2.Text, StandardPrice = price, IsPermamentOrIsNotPermament = false });
+            }
             else
             {
                 MessageBox.Show("Podane wartości sa błędne");

@@ -20,11 +20,11 @@
                         ItemsSource="{Binding Rows}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="140" Header="Nazwa"
+                                <GridViewColumn Width="140" Header="First Name"
                                     DisplayMemberBinding="{Binding StandardName}"  />
-                                <GridViewColumn Width="140" Header="Cena"  
+                                <GridViewColumn Width="140" Header="Last Name"  
                                     DisplayMemberBinding="{Binding StandardPrice}" />
-                                <GridViewColumn Width="140" Header="Typ"
+                                <GridViewColumn Width="140" Header="Email Address"
                                     DisplayMemberBinding="{Binding TypeName}" />
                             </GridView>
                         </ListView.View>
