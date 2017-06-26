@@ -58,8 +58,6 @@ namespace SRPH
         private void btn_Save_Click(object sender, RoutedEventArgs e)
         {
             GUI2DB.GUI2DB.StoreStandardList(TheList);
-            TheList.Clear();
-            MessageBox.Show("Zapisano");
         }
 
         private void btn_Add2_Click(object sender, RoutedEventArgs e)

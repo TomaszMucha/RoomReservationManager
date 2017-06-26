@@ -222,7 +222,7 @@ namespace SRPH
 
         private void btn_Standard_Click(object sender, RoutedEventArgs e)
         {
-            Standards window = new Standards(false);
+            Standards window = new Standards();
             window.ShowDialog();
         }
     }

@@ -21,29 +21,18 @@ namespace SRPH
     /// </summary>
     public partial class Standards : Window
     {
-        private ObservableCollection<BoolStringClass> TheList { get; set; }
-        private List<BoolStringClass> ReturnList = new List<BoolStringClass>();
+        public ObservableCollection<BoolStringClass> TheList { get; set; }
 
-        public Standards(bool IsPernamentType)
+        public Standards()
         {
             InitializeComponent();
-            CreateCheckBoxList(IsPernamentType);
-
+            CreateCheckBoxList();
         }
 
-        public void CreateCheckBoxList(bool Pernament)
+        public void CreateCheckBoxList()
         {
             TheList = new ObservableCollection<BoolStringClass>();
-            var List = new List<BoolStringClass>();
-
-            if (Pernament == true)
-            {
-                List = GUI2DB.GUI2DB.GetPermanentStandard();
-            }
-            else
-            {
-                List = GUI2DB.GUI2DB.GetNotPermanentStandard();
-            }
+            var List = GUI2DB.GUI2DB.GetPermanentStandard();
             foreach (var item in List)
             {
                 TheList.Add(item);
@@ -55,18 +44,17 @@ namespace SRPH
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chkZone = (CheckBox)sender;
-            var item = new BoolStringClass(chkZone.Content.ToString(), int.Parse(chkZone.Tag.ToString()), false);
-            ReturnList.Add(item);
+            foreach (var item in TheList)
+            {
+                if (item.StandardName == chkZone.Content.ToString())
+                {
+                    MessageBox.Show(item.StandardName.ToString());
+                }
+            }
             ZoneText.Text = "Selected Zone Name= " + chkZone.Content.ToString();
             ZoneValue.Text = "Selected Zone Value= " + chkZone.Tag.ToString();
-        }
-
-
-        private void btn_Save_Click(object sender, RoutedEventArgs e)
-        {
-            GUI2DB.GUI2DB.SaveStandards(ReturnList);
         }
     }
 
 }
-
+  
