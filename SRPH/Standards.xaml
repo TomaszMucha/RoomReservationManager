@@ -21,6 +21,7 @@
         </StackPanel>
                     <TextBox Name="ZoneText" Width="160" Height="20" Margin="-80,140,0,0" Background="Bisque" />
                     <TextBox Name="ZoneValue" Width="160" Height="20" Margin="21,235,111,14" Background="Bisque" />
-                </Grid>
+        <Button x:Name="btn_Save" Content="Zapisz" HorizontalAlignment="Left" Margin="186,240,0,0" VerticalAlignment="Top" Width="75" Click="btn_Save_Click" />
+    </Grid>
 
 </Window>
