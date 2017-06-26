@@ -22,17 +22,28 @@ namespace SRPH
     public partial class Standards : Window
     {
         public ObservableCollection<BoolStringClass> TheList { get; set; }
+        public List<BoolStringClass> ReturnList = new List<BoolStringClass>();
 
-        public Standards()
+        public Standards(bool IsPernamentType)
         {
             InitializeComponent();
-            CreateCheckBoxList();
+            CreateCheckBoxList(IsPernamentType);
+
         }
 
-        public void CreateCheckBoxList()
+        public void CreateCheckBoxList(bool Pernament)
         {
             TheList = new ObservableCollection<BoolStringClass>();
-            var List = GUI2DB.GUI2DB.GetPermanentStandard();
+            var List = new List<BoolStringClass>();
+
+            if (Pernament == true)
+            {
+                List = GUI2DB.GUI2DB.GetPermanentStandard();
+            }
+            else
+            {
+                List = GUI2DB.GUI2DB.GetNotPermanentStandard();
+            }
             foreach (var item in List)
             {
                 TheList.Add(item);
@@ -44,17 +55,18 @@ namespace SRPH
         private void CheckBoxZone_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chkZone = (CheckBox)sender;
-            foreach (var item in TheList)
-            {
-                if (item.StandardName == chkZone.Content.ToString())
-                {
-                    MessageBox.Show(item.StandardName.ToString());
-                }
-            }
+            //var item = new BoolStringClass(chkZone.Content.ToString(), int.Parse(chkZone.Tag.ToString()), false);
+            //ReturnList.Add(item);
             ZoneText.Text = "Selected Zone Name= " + chkZone.Content.ToString();
             ZoneValue.Text = "Selected Zone Value= " + chkZone.Tag.ToString();
+        }
+
+
+        private void btn_Save_Click(object sender, RoutedEventArgs e)
+        {
+            //GUI2DB.GUI2DB.SaveStandards(ReturnList);
         }
     }
 
 }
-  
+
