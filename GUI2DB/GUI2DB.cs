@@ -363,6 +363,35 @@ namespace GUI2DB
             }
 
         }
+
+        public static void SaveStandards(List<BoolStringClass> standards)
+        {
+
+            string path = Directory.GetCurrentDirectory() + "\\database.srph";
+            //IObjectContainer db;
+            IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+
+            config.Common.ObjectClass(typeof(BoolStringClass)).CascadeOnUpdate(true);
+            config.Common.ObjectClass(typeof(BoolStringClass)).CascadeOnDelete(true);
+            config.Common.ObjectClass(typeof(BoolStringClass)).CascadeOnActivate(true);
+
+            //db = Db4oEmbedded.OpenFile(config, path);
+
+            using (IObjectContainer db = Db4oEmbedded.OpenFile(config, path))
+            {
+                foreach (var item in standards)
+                {
+                    var standard = new BoolStringClass(item.StandardName, item.StandardPrice, item.IsPermamentOrIsNotPermament);
+
+                    db.Store(standard);
+                    db.Commit();
+                    db.Close();
+                }
+                
+            }
+
+
+        }
     }
 }
 
