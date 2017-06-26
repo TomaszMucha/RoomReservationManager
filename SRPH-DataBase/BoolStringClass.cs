@@ -8,15 +8,15 @@ namespace SRPH_DataBase
 {
     public class BoolStringClass
     {
-        private string standardName;
-        private int standardPrice;
-        private bool isPermamentOrIsNotPermament;
+        //private string standardName;
+        //private int standardPrice;
+        //private bool isPermamentOrIsNotPermament;
 
         public BoolStringClass(string standardName, int standardPrice, bool isPermamentOrIsNotPermament)
         {
-            this.standardName = standardName;
-            this.standardPrice = standardPrice;
-            this.isPermamentOrIsNotPermament = isPermamentOrIsNotPermament;
+            StandardName = standardName;
+            StandardPrice = standardPrice;
+            IsPermamentOrIsNotPermament = isPermamentOrIsNotPermament;
         }
 
         public string StandardName { get; set; }
