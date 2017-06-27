@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Db4objects.Db4o, Version=8.0.276.16149, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Desktop\Db40\db4o-8.0\bin\compact-3.5\Db4objects.Db4o.dll</HintPath>
+    <Reference Include="Db4objects.Db4o">
+      <HintPath>..\GUI2DB\bin\Debug\Db4objects.Db4o.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

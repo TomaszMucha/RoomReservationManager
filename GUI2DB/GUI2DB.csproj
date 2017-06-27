@@ -31,19 +31,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cecil.FlowAnalysis, Version=0.1.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Cecil.FlowAnalysis.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Cecil.FlowAnalysis.dll</HintPath>
     </Reference>
-    <Reference Include="Db4objects.Db4o">
-      <HintPath>..\..\..\..\..\Desktop\Db40\db4o-8.0\bin\compact-3.5\Db4objects.Db4o.dll</HintPath>
+    <Reference Include="Db4objects.Db4o, Version=8.0.184.15484, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Db4objects.Db4o.dll</HintPath>
     </Reference>
-    <Reference Include="Db4objects.Db4o.Linq">
-      <HintPath>..\..\..\..\..\Desktop\Db40\db4o-8.0\bin\compact-3.5\Db4objects.Db4o.Linq.dll</HintPath>
+    <Reference Include="Db4objects.Db4o.Linq, Version=8.0.184.15484, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Db4objects.Db4o.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.9.3.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Mono.Cecil.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Mono.Reflection.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Mono.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Linq.Expressions">
@@ -64,10 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PaymentsSaver\PaymentsSaver.csproj">
-      <Project>{97cb113e-d33b-41d0-87e4-f59379f75206}</Project>
-      <Name>PaymentsSaver</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SRPH-DataBase\SRPH-DataBase.csproj">
       <Project>{ddbad3f1-cd89-472d-a99e-836f7002863c}</Project>
       <Name>SRPH-DataBase</Name>
